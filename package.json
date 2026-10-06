@@ -1,0 +1,70 @@
+{
+  "name": "@simplishelf/opscards",
+  "version": "0.1.0",
+  "description": "Beautiful, data-first React cards for everyday operations.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nahushr/opscards.git"
+  },
+  "homepage": "https://github.com/nahushr/opscards#readme",
+  "bugs": {
+    "url": "https://github.com/nahushr/opscards/issues"
+  },
+  "keywords": [
+    "react",
+    "cards",
+    "operations",
+    "inventory",
+    "dashboard",
+    "typescript",
+    "simplishelf"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./style.css": "./dist/style.css"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "assets"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "vite build && tsc --emitDeclarationOnly -p tsconfig.build.json",
+    "prepack": "npm run build",
+    "dev:example": "npm run build && npm run dev --workspace opscards-example",
+    "build:example": "npm run build && npm run build --workspace opscards-example",
+    "preview:example": "npm run preview --workspace opscards-example"
+  },
+  "workspaces": [
+    "examples"
+  ],
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "dependencies": {
+    "libphonenumber-js": "^1.13.11"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.43",
+    "@types/react-dom": "^18.2.17",
+    "@vitejs/plugin-react": "^4.7.0",
+    "typescript": "^5.8.3",
+    "vite": "^6.4.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  }
+}
