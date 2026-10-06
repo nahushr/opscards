@@ -1,8 +1,4 @@
-import type {
-  KeyboardEvent,
-  MouseEvent,
-  ReactNode,
-} from "react";
+import type { ReactNode } from "react";
 import type { OpsCardProps } from "../types";
 import { getInitials } from "../utils/formatters";
 
@@ -22,23 +18,30 @@ export function CardFrame<TData>({
   onHover,
   ariaLabel,
 }: CardFrameProps<TData>) {
-  const handleClick = (_event: MouseEvent<HTMLElement>) => onClick?.(data);
-  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
-    if (!onClick || (event.key !== "Enter" && event.key !== " ")) return;
-    event.preventDefault();
-    onClick(data);
-  };
+  const cardClassName = `ops-card ops-card--${variant} ${onClick ? "ops-card--clickable" : ""} ${className}`.trim();
+  const handleHover = onHover ? () => onHover(data) : undefined;
+
+  if (onClick) {
+    return (
+      <button
+        type="button"
+        className={cardClassName}
+        style={style}
+        aria-label={ariaLabel}
+        onClick={() => onClick(data)}
+        onPointerEnter={handleHover}
+      >
+        {children}
+      </button>
+    );
+  }
 
   return (
     <article
-      className={`ops-card ops-card--${variant} ${onClick ? "ops-card--clickable" : ""} ${className}`.trim()}
+      className={cardClassName}
       style={style}
-      role={onClick ? "button" : undefined}
-      tabIndex={onClick ? 0 : undefined}
       aria-label={ariaLabel}
-      onClick={onClick ? handleClick : undefined}
-      onKeyDown={onClick ? handleKeyDown : undefined}
-      onMouseEnter={onHover ? () => onHover(data) : undefined}
+      onPointerEnter={handleHover}
     >
       {children}
     </article>
