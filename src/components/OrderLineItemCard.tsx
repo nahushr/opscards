@@ -23,8 +23,8 @@ export function OrderLineItemCard({ data, ...props }: OrderLineItemCardProps) {
           {data.status && <Pill tone={getStatusTone(data.status)} dot>{data.status}</Pill>}
         </div>
         <div className="ops-order-card__details">
-          <span><small>Quantity</small><strong>× {formatOpsNumber(data.quantity, data.locale)}</strong></span>
-          <span><small>Unit price</small><strong>{formatOpsCurrency(data.unitPrice, priceOptions)}</strong></span>
+          <span><small><Icon name="box" size={13} />Quantity</small><strong>× {formatOpsNumber(data.quantity, data.locale)}</strong></span>
+          <span><small><Icon name="tag" size={13} />Unit price</small><strong>{formatOpsCurrency(data.unitPrice, priceOptions)}</strong></span>
           {data.location && <span className="ops-order-card__location"><Icon name="map-pin" size={13} /><small>{data.location}</small></span>}
         </div>
       </div>

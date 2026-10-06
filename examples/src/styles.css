@@ -551,7 +551,74 @@ button:focus-visible, a:focus-visible { outline: 3px solid #7db790; outline-offs
   .install-command__label { font-size: 9px; }
   .install-command code { font-size: 12px; }
   .install-command__hint { font-size: 10px; }
-  .footer { font-size: 10px; }
+.footer { font-size: 10px; }
   .footer > a:not(.brand) { font-size: 10px; }
   .footer > small { font-size: 9px; }
+}
+
+.card-tab__icon { display: grid; width: 18px; height: 18px; flex: 0 0 auto; place-items: center; color: #819987; }
+.card-tab__icon svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.55; }
+.card-tab__icon--product { color: #688b70; }
+.card-tab__icon--inventory { color: #5f8790; }
+.card-tab__icon--package { color: #8973a5; }
+.card-tab__icon--event { color: #ad8052; }
+.card-tab__icon--metric { color: #58916c; }
+.card-tab__icon--ticket { color: #6682a1; }
+.card-tab__icon--order { color: #9c785f; }
+.card-tab.is-active .card-tab__icon { filter: saturate(1.2); }
+
+/* Keep secondary card information comfortable to scan at presentation size. */
+.preview-device .ops-card h3 { font-size: 21px; }
+.preview-device .ops-eyebrow { font-size: 12px; }
+.preview-device .ops-pill { font-size: 13px; }
+.preview-device .ops-product-card__category { font-size: 13px; }
+.preview-device .ops-product-card__footer { align-items: stretch; }
+.preview-device .ops-product-card__specs { display: flex; align-items: center; gap: 16px; font-size: 13px; }
+.preview-device .ops-product-card__spec { flex: 0 0 auto; }
+.preview-device .ops-inventory-card__address,
+.preview-device .ops-inventory-card__number span,
+.preview-device .ops-inventory-card__meta,
+.preview-device .ops-event-card__meta,
+.preview-device .ops-ticket-card__meta { font-size: 14px; }
+.preview-device .ops-inventory-card__value { font-size: 16px; }
+.preview-device .ops-inventory-card__value small,
+.preview-device .ops-package-card__details span,
+.preview-device .ops-package-card__details small,
+.preview-device .ops-package-card__foot,
+.preview-device .ops-event-card__organizer small,
+.preview-device .ops-event-card__attendees > small,
+.preview-device .ops-ticket-card__requester small,
+.preview-device .ops-order-card__details small,
+.preview-device .ops-order-card__total > small { font-size: 12px; }
+.preview-device .ops-package-card__details strong,
+.preview-device .ops-order-card__details strong { font-size: 15px; }
+.preview-device .ops-event-card__organizer strong,
+.preview-device .ops-ticket-card__id strong { font-size: 14px; }
+.preview-device .ops-metric-card__change,
+.preview-device .ops-metric-card__comparison,
+.preview-device .ops-metric-card__detail,
+.preview-device .ops-ticket-card__requester,
+.preview-device .ops-ticket-card__assignee,
+.preview-device .ops-order-card__sku,
+.preview-device .ops-order-card__variant { font-size: 13px; }
+.preview-device .ops-order-card__total > strong { font-size: 21px; }
+.ops-package-card__details > div:nth-child(1) span svg { color: #6688a0; }
+
+@media (hover: none) {
+  .ops-product-card__gallery-control { opacity: 1; }
+}
+
+@media (max-width: 560px) {
+  .preview-device .ops-card h3 { font-size: 19px; }
+  .preview-device .ops-product-card__specs { gap: 5px; font-size: 11px; }
+  .preview-device .ops-product-card__spec { gap: 3px; }
+  .preview-device .ops-product-card__spec svg { width: 13px; height: 13px; }
+  .preview-device .ops-inventory-card__address,
+  .preview-device .ops-inventory-card__number span,
+  .preview-device .ops-inventory-card__meta,
+  .preview-device .ops-event-card__meta,
+  .preview-device .ops-ticket-card__meta { font-size: 13px; }
+  .preview-device .ops-package-card__details strong,
+  .preview-device .ops-order-card__details strong { font-size: 13px; }
+  .preview-device .ops-order-card__details small { font-size: 11px; }
 }

@@ -48,10 +48,17 @@ const product: ProductCardData = {
   title: "Morrow field jacket",
   brand: "Northline Supply",
   category: "Outerwear",
-  imageUrl: "/images/field-jacket.jpg",
+  images: [
+    { src: "/images/field-jacket-front.jpg", alt: "Field jacket, front view" },
+    { src: "/images/field-jacket-detail.jpg", alt: "Field jacket, close detail" },
+  ],
   price: 148,
+  compareAtPrice: 179, // Optional; calculates and displays the discount.
+  discountPercent: 17, // Optional override when you already have the discount.
   currency: "USD",
   locale: "en-US",
+  sku: "NL-048-OLV",
+  specs: { Fabric: "Organic cotton", Weight: "620 g" },
 };
 
 export function ProductPreview() {
@@ -121,6 +128,8 @@ requester: {
 | `style` | `CSSProperties` | — | Set width, margins, or positioning |
 
 The card owns its information hierarchy and component styling. Use `className` or `style` for app layout and sizing without rebuilding the rendering logic.
+
+`ProductCard` accepts `images` for a keyboard-accessible image carousel. Keep `imageUrl` for a single-image product. Product specifications stay on one line and can be horizontally scrolled on narrow cards. `discountPercent` can be supplied directly; otherwise the card derives a discount from `price` and `compareAtPrice`.
 
 ## Example project
 

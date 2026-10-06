@@ -1,4 +1,4 @@
-import { type KeyboardEvent, useCallback, useEffect, useRef, useState } from "react";
+import { type KeyboardEvent, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import {
   EventDetailsCard,
   InventoryLocationCard,
@@ -32,19 +32,23 @@ const CARD_TYPES: { id: CardId; number: string; title: string; kind: string; cod
 
 const product: ProductCardData = {
   id: "JKT-048",
-  title: "Morrow field jacket",
+  title: "Morrow quilted jacket",
   brand: "NORTHLINE SUPPLY",
   category: "Outerwear",
   condition: "New · A grade",
-  imageUrl: "/products/field-jacket.svg",
-  description: "Weather-ready cotton canvas with a little room to roam.",
-  sku: "NL-048-OLV",
+  images: [
+    { src: "/products/quilted-jacket.jpg", alt: "Black quilted jacket hanging on a clothing rack" },
+    { src: "/products/outerwear-rack.jpg", alt: "Close view of quilted coats and jackets on hangers" },
+  ],
+  description: "Lightweight warmth with recycled fill and room to roam.",
+  sku: "NL-048",
   price: 148,
   compareAtPrice: 179,
   currency: "USD",
   locale: "en-US",
   badge: "In stock",
-  specs: { "Fabric": "Organic cotton", "Weight": "620 g" },
+  discountPercent: 17,
+  specs: { "Fabric": "Nylon", "Weight": "620 g" },
 };
 
 const location: InventoryLocationCardData = {
@@ -59,9 +63,9 @@ const location: InventoryLocationCardData = {
   unitLabel: "units",
   restockDate: "2026-10-12T12:00:00-04:00",
   inventoryValue: 34782.5,
-  currency: "CAD",
+  currency: "USD",
+  currencyDisplay: "narrowSymbol",
   locale: "en-CA",
-  currencyDisplay: "code",
 };
 
 const packageSpec: PackageCardData = {
@@ -74,8 +78,9 @@ const packageSpec: PackageCardData = {
   weightUnit: "kg",
   capacity: 2,
   capacityUnit: "items",
-  price: 2400,
-  currency: "INR",
+  price: 24,
+  currency: "USD",
+  currencyDisplay: "narrowSymbol",
   locale: "en-IN",
   featured: true,
 };
@@ -101,8 +106,9 @@ const revenue: MetricCardData = {
   label: "Revenue this month",
   value: 28490,
   format: "currency",
-  currency: "GBP",
-  locale: "en-GB",
+  currency: "USD",
+  currencyDisplay: "narrowSymbol",
+  locale: "en-US",
   change: 12.8,
   comparisonLabel: "vs. September",
   detail: "On track for your October target",
@@ -133,7 +139,8 @@ const lineItem: OrderLineItemCardData = {
   quantity: 12,
   unitPrice: 5.6,
   subtotal: 67.2,
-  currency: "EUR",
+  currency: "USD",
+  currencyDisplay: "narrowSymbol",
   locale: "de-DE",
   status: "Ready to pack",
   location: "Berlin fulfilment",
@@ -168,6 +175,19 @@ function DesktopIcon() {
 
 function MobileIcon() {
   return <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="5.25" y="1.75" width="9.5" height="16.5" rx="2.1"/><path d="M8.5 4h3M9.3 15.7h1.4"/></svg>;
+}
+
+function CardTabIcon({ id }: { id: CardId }) {
+  const paths: Record<CardId, ReactNode> = {
+    product: <><path d="m10 2.5 7 4v7l-7 4-7-4v-7l7-4Z"/><path d="m3.5 6.5 6.5 4 6.5-4M10 10.5v7"/></>,
+    inventory: <><path d="M16.7 8.3c0 4.4-6.7 9.2-6.7 9.2S3.3 12.7 3.3 8.3a6.7 6.7 0 1 1 13.4 0Z"/><circle cx="10" cy="8" r="2"/></>,
+    package: <><path d="m10 2.5 7 4v7l-7 4-7-4v-7l7-4Z"/><path d="m3.5 6.5 6.5 4 6.5-4M10 10.5v7"/></>,
+    event: <><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6.5 2.5v4M13.5 2.5v4M3 8.5h14"/></>,
+    metric: <><path d="m3 14 4-4 3 3 7-8"/><path d="M12.5 5H17v4.5"/></>,
+    ticket: <><path d="M3 11V9a7 7 0 0 1 14 0v2"/><path d="M3 10h3v6H5a2 2 0 0 1-2-2v-4ZM17 10h-3v6h1a2 2 0 0 0 2-2v-4Z"/></>,
+    order: <><path d="M3 6.5 10 3l7 3.5v8L10 18l-7-3.5v-8Z"/><path d="m3.5 6.8 6.5 3.4 6.5-3.4M10 10.2V18"/></>,
+  };
+  return <svg viewBox="0 0 20 20" aria-hidden="true">{paths[id]}</svg>;
 }
 
 export default function App() {
@@ -268,6 +288,7 @@ export default function App() {
                   onClick={() => { setActiveId(card.id); setToast(null); }}
                 >
                   <span className="card-tab__number">{card.number}</span>
+                  <span className={`card-tab__icon card-tab__icon--${card.id}`}><CardTabIcon id={card.id} /></span>
                   <span>{card.title}</span>
                 </button>
               ))}

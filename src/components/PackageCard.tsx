@@ -31,9 +31,9 @@ export function PackageCard({ data, ...props }: PackageCardProps) {
         {dimensions && <span className="ops-package-card__dimensions">{dimensions.length} × {dimensions.width} × {dimensions.height} <small>{dimensions.unit ?? "cm"}</small></span>}
       </div>
       <div className="ops-package-card__details">
-        {data.quantity != null && <div><span>Pack quantity</span><strong>{formatOpsNumber(data.quantity, data.locale)} <small>units</small></strong></div>}
-        {data.weight != null && <div><span>Package weight</span><strong>{formatOpsNumber(data.weight, data.locale, { maximumFractionDigits: 2 })} <small>{data.weightUnit ?? "kg"}</small></strong></div>}
-        {data.capacity != null && <div><span>Item capacity</span><strong>{formatOpsNumber(data.capacity, data.locale)} <small>{data.capacityUnit ?? "items"}</small></strong></div>}
+        {data.quantity != null && <div><span><Icon name="box" size={15} />Pack quantity</span><strong>{formatOpsNumber(data.quantity, data.locale)} <small>units</small></strong></div>}
+        {data.weight != null && <div><span><Icon name="weight" size={15} />Package weight</span><strong>{formatOpsNumber(data.weight, data.locale, { maximumFractionDigits: 2 })} <small>{data.weightUnit ?? "kg"}</small></strong></div>}
+        {data.capacity != null && <div><span><Icon name="cube" size={15} />Item capacity</span><strong>{formatOpsNumber(data.capacity, data.locale)} <small>{data.capacityUnit ?? "items"}</small></strong></div>}
       </div>
       <div className="ops-package-card__foot"><Icon name="cube" size={15} /><span>Dimensions shown as L × W × H</span><Icon name="arrow-up-right" size={16} /></div>
     </CardFrame>

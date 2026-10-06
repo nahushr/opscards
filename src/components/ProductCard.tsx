@@ -1,11 +1,85 @@
-import type { OpsCardProps, ProductCardData } from "../types";
+import { useState } from "react";
+import type { OpsCardProps, ProductCardData, ProductImage as ProductImageData } from "../types";
 import { formatOpsCurrency } from "../utils/formatters";
-import { CardFrame, Eyebrow, Icon, Pill, ProductImage } from "./shared";
+import { CardFrame, Eyebrow, Icon, Pill, ProductImage, type IconName } from "./shared";
 
 export type ProductCardProps = OpsCardProps<ProductCardData>;
 
+function getSpecIcon(label: string): IconName {
+  const normalized = label.toLowerCase();
+  if (/sku|code|barcode/.test(normalized)) return "tag";
+  if (/fabric|material|composition/.test(normalized)) return "shirt";
+  if (/weight|mass/.test(normalized)) return "weight";
+  if (/size|dimension|length|width|height/.test(normalized)) return "ruler";
+  if (/color|colour/.test(normalized)) return "palette";
+  return "spark";
+}
+
+function ProductGallery({
+  images,
+  title,
+  category,
+  badge,
+}: {
+  images: ProductImageData[];
+  title: string;
+  category?: string;
+  badge?: string;
+}) {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const image = images[activeIndex];
+  const hasMultipleImages = images.length > 1;
+  const moveTo = (index: number) => setActiveIndex((index + images.length) % images.length);
+
+  return (
+    <div className="ops-product-card__gallery" role="group" aria-label={`${title} product images`} aria-roledescription="carousel">
+      <ProductImage src={image?.src} alt={image?.alt ?? title} />
+      {badge && <Pill tone="green" dot>{badge}</Pill>}
+      {category && <span className="ops-product-card__category">{category}</span>}
+      {hasMultipleImages && (
+        <>
+          <button
+            type="button"
+            className="ops-product-card__gallery-control ops-product-card__gallery-control--previous"
+            aria-label="Previous product image"
+            onClick={(event) => { event.stopPropagation(); moveTo(activeIndex - 1); }}
+          >
+            <Icon name="chevron-left" size={19} />
+          </button>
+          <button
+            type="button"
+            className="ops-product-card__gallery-control ops-product-card__gallery-control--next"
+            aria-label="Next product image"
+            onClick={(event) => { event.stopPropagation(); moveTo(activeIndex + 1); }}
+          >
+            <Icon name="chevron-right" size={19} />
+          </button>
+          <div className="ops-product-card__gallery-dots" role="group" aria-label="Choose product image">
+            {images.map((entry, index) => (
+              <button
+                key={`${entry.src}-${index}`}
+                type="button"
+                className={`ops-product-card__gallery-dot ${index === activeIndex ? "is-active" : ""}`}
+                aria-label={`Show image ${index + 1} of ${images.length}`}
+                aria-pressed={index === activeIndex}
+                onClick={(event) => { event.stopPropagation(); moveTo(index); }}
+              />
+            ))}
+          </div>
+          <span className="ops-visually-hidden" aria-live="polite">Image {activeIndex + 1} of {images.length}</span>
+        </>
+      )}
+    </div>
+  );
+}
+
 export function ProductCard({ data, ...props }: ProductCardProps) {
-  const image = data.imageUrl ?? data.images?.[0]?.src;
+  const images = data.images?.length
+    ? data.images
+    : data.imageUrl
+      ? [{ src: data.imageUrl, alt: data.title }]
+      : [];
+  const galleryKey = `${data.id ?? data.title}:${images.map(({ src }) => src).join("|")}`;
   const price = data.price == null
     ? undefined
     : formatOpsCurrency(data.price, {
@@ -24,13 +98,18 @@ export function ProductCard({ data, ...props }: ProductCardProps) {
         amountInMinorUnits: data.amountInMinorUnits,
         minorUnits: data.minorUnits,
       });
+  const computedDiscount = data.price != null && data.compareAtPrice != null && data.compareAtPrice > data.price
+    ? Math.round(((data.compareAtPrice - data.price) / data.compareAtPrice) * 100)
+    : undefined;
+  const discountPercent = data.discountPercent ?? computedDiscount;
+  const discountLabel = discountPercent != null && discountPercent > 0
+    ? `${Math.round(discountPercent)}% OFF`
+    : undefined;
 
   return (
-    <CardFrame data={data} variant="product" ariaLabel={data.title} {...props}>
+    <CardFrame data={data} variant="product" ariaLabel={data.title} allowNestedInteractions {...props}>
       <div className="ops-product-card__visual">
-        <ProductImage src={image} alt={data.images?.[0]?.alt ?? data.title} />
-        {data.badge && <Pill tone="green" dot>{data.badge}</Pill>}
-        {data.category && <span className="ops-product-card__category">{data.category}</span>}
+        <ProductGallery key={galleryKey} images={images} title={data.title} category={data.category} badge={data.badge} />
       </div>
       <div className="ops-product-card__body">
         <div className="ops-product-card__heading">
@@ -49,16 +128,34 @@ export function ProductCard({ data, ...props }: ProductCardProps) {
         <div className="ops-product-card__footer">
           <div className="ops-product-card__attributes">
             {data.condition && <Pill>{data.condition}</Pill>}
-            {data.sku && <span className="ops-microcopy">SKU {data.sku}</span>}
+            {discountLabel && <Pill tone="amber">{discountLabel}</Pill>}
+            {props.onClick ? (
+              <button
+                type="button"
+                className="ops-card__arrow ops-product-card__action"
+                aria-label={`View ${data.title}`}
+                onClick={(event) => { event.stopPropagation(); props.onClick?.(data); }}
+              >
+                <Icon name="arrow-up-right" size={18} />
+              </button>
+            ) : (
+              <span className="ops-card__arrow" aria-hidden="true"><Icon name="arrow-up-right" size={18} /></span>
+            )}
           </div>
-          {data.specs && Object.keys(data.specs).length > 0 && (
-            <div className="ops-product-card__specs">
-              {Object.entries(data.specs).slice(0, 2).map(([label, value]) => (
-                <span key={label}><Icon name="spark" size={13} /> {label}: {value}</span>
+          {(data.sku || (data.specs && Object.keys(data.specs).length > 0)) && (
+            <div className="ops-product-card__specs" aria-label="Product specifications">
+              {data.sku && (
+                <span className="ops-product-card__spec ops-product-card__spec--sku" title={`SKU ${data.sku}`}>
+                  <Icon name="tag" size={15} /><span className="ops-product-card__spec-label">SKU</span><strong>{data.sku}</strong>
+                </span>
+              )}
+              {Object.entries(data.specs ?? {}).map(([label, value]) => (
+                <span className={`ops-product-card__spec ops-product-card__spec--${getSpecIcon(label)}`} key={label} title={`${label}: ${value}`}>
+                  <Icon name={getSpecIcon(label)} size={15} /><span className="ops-product-card__spec-label">{label}</span><strong>{value}</strong>
+                </span>
               ))}
             </div>
           )}
-          <span className="ops-card__arrow"><Icon name="arrow-up-right" size={17} /></span>
         </div>
       </div>
     </CardFrame>

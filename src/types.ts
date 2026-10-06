@@ -40,6 +40,8 @@ export interface ProductCardData extends RegionFormat {
   sku?: string;
   price?: number;
   compareAtPrice?: number;
+  /** Discount percentage shown alongside the current and original prices. */
+  discountPercent?: number;
   currency?: string;
   amountInMinorUnits?: boolean;
   minorUnits?: number;

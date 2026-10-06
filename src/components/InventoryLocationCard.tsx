@@ -27,14 +27,14 @@ export function InventoryLocationCard({ data, ...props }: InventoryLocationCardP
         <p className="ops-inventory-card__address"><Icon name="map-pin" size={14} /> {[data.address, data.city, data.country].filter(Boolean).join(", ")}</p>
       )}
       <div className="ops-inventory-card__stock">
-        <div className="ops-inventory-card__number"><strong>{formatOpsNumber(data.onHand, data.locale)}</strong><span>{unit} on hand</span></div>
+        <div className="ops-inventory-card__number"><strong>{formatOpsNumber(data.onHand, data.locale)}</strong><span><Icon name="box" size={14} />{unit} on hand</span></div>
         {data.inventoryValue != null && data.currency && <span className="ops-inventory-card__value">{formatOpsCurrency(data.inventoryValue, { locale: data.locale, currency: data.currency, currencyDisplay: data.currencyDisplay })}<small>stock value</small></span>}
       </div>
       <div className={`ops-stock-meter ${lowStock ? "ops-stock-meter--low" : ""}`} aria-label={`${Math.round(ratio * 100)} percent of healthy stock target`}>
         <span style={{ width: `${Math.max(ratio * 100, 7)}%` }} />
       </div>
       <div className="ops-inventory-card__meta">
-        <span>Reorder level <strong>{formatOpsNumber(data.reorderPoint, data.locale)} {unit}</strong></span>
+        <span><Icon name="cube" size={14} />Reorder level <strong>{formatOpsNumber(data.reorderPoint, data.locale)} {unit}</strong></span>
         {data.restockDate && <span><Icon name="clock" size={13} /> Restock {formatOpsDateTime(data.restockDate, data.locale, data.timeZone, { month: "short", day: "numeric" })}</span>}
       </div>
     </CardFrame>
