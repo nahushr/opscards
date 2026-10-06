@@ -217,6 +217,31 @@
   .ops-order-card__total { grid-column: 2; min-width: 0; flex-direction: row; align-items: center; gap: 8px; margin-top: -1px; padding: 9px 0 1px; border-top: 1px solid #eff0ec; border-left: 0; }
   .ops-order-card__total > strong { margin: 0 auto 0 0; font-size: 14px; }
   .ops-order-card__total > span { width: 24px; height: 24px; }
+
+  .ops-product-card__visual .ops-product-image { aspect-ratio: 1.32 / 1; }
+  .ops-product-card__body { padding: 17px; }
+  .ops-product-card__heading { align-items: flex-start; flex-direction: column; gap: 8px; }
+  .ops-product-card__price { align-items: baseline; flex-direction: row; gap: 8px; }
+  .ops-product-card__footer { align-items: center; flex-wrap: wrap; }
+
+  .ops-inventory-card__heading { margin-top: 18px; }
+  .ops-inventory-card__stock { align-items: center; margin-top: 20px; }
+  .ops-inventory-card__number { align-items: flex-start; flex-direction: column; gap: 4px; }
+  .ops-inventory-card__meta { align-items: flex-start; flex-direction: column; gap: 8px; }
+
+  .ops-package-card__heading { align-items: flex-start; flex-direction: column; gap: 7px; }
+  .ops-package-card__price { align-items: baseline; flex-direction: row; gap: 7px; }
+  .ops-package-card__diagram { min-height: 148px; height: auto; flex-direction: column; gap: 8px; padding: 13px; }
+  .ops-package-card__box { transform: perspective(150px) rotateY(-18deg) rotateX(5deg) scale(.88); }
+  .ops-package-card__details { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px 8px; }
+
+  .ops-card--ticket { padding: 18px; }
+  .ops-ticket-card__header { align-items: flex-start; flex-direction: column; }
+  .ops-ticket-card > h3 { margin-top: 14px; }
+  .ops-ticket-card__meta { gap: 8px; }
+  .ops-ticket-card__meta > span:last-child { margin-left: 0; }
+  .ops-ticket-card__footer { align-items: flex-start; flex-direction: column; gap: 10px; }
+  .ops-ticket-card__assignee { white-space: normal; }
 }
 
 @media (prefers-reduced-motion: reduce) {
