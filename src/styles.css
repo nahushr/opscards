@@ -108,11 +108,11 @@
 .ops-client-card__metrics,
 .ops-client-card__footer { position: relative; z-index: 1; }
 .ops-client-card__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 11px; }
-.ops-client-card__identity { display: flex; min-width: 0; align-items: center; gap: 13px; }
+.ops-client-card__identity { display: flex; flex: 1 1 auto; min-width: 0; align-items: center; gap: 13px; }
 .ops-client-card__logo { display: grid; width: 80px; height: 80px; flex: 0 0 auto; place-items: center; overflow: hidden; color: #fff; background: var(--ops-client-accent); border: 1px solid rgb(255 255 255 / 75%); border-radius: 20px; box-shadow: 0 5px 12px color-mix(in srgb, var(--ops-client-accent) 22%, transparent); font-family: Manrope, "DM Sans", sans-serif; font-size: 22px; font-weight: 750; letter-spacing: -.05em; }
 .ops-client-card__logo--image { background: transparent; border-color: transparent; box-shadow: none; }
 .ops-client-card__logo img { display: block; width: 100%; height: 100%; padding: 2px; object-fit: contain; }
-.ops-client-card__heading { min-width: 0; }
+.ops-client-card__heading { flex: 1 1 auto; min-width: 0; }
 .ops-client-card__heading h3 { margin-top: 3px; overflow-wrap: anywhere; font-size: 19px; }
 .ops-client-card__code { display: block; margin-top: 4px; color: #929a91; font-family: "DM Mono", ui-monospace, monospace; font-size: 9px; letter-spacing: .045em; }
 .ops-client-card__header > .ops-pill { margin-top: 2px; }
