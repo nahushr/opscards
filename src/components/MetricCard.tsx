@@ -1,13 +1,29 @@
 import type { MetricCardData, OpsCardProps } from "../types";
-import { formatOpsCurrency, formatOpsNumber } from "../utils/formatters";
+import {
+  compactOpsMetricText,
+  formatOpsCompactCurrency,
+  formatOpsCompactNumber,
+  formatOpsNumber,
+} from "../utils/formatters";
 import { CardFrame, Icon } from "./shared";
 
 export type MetricCardProps = OpsCardProps<MetricCardData>;
 
 function formatMetricValue(data: MetricCardData): string {
-  if (typeof data.value !== "number" || data.format === "plain") return `${data.prefix ?? ""}${data.value}${data.suffix ?? ""}`;
+  const prefix = data.prefix ?? "";
+  const suffix = data.suffix ?? "";
+
+  if (typeof data.value !== "number") {
+    const value = `${prefix}${data.value}${suffix}`;
+    return data.format === "percent" ? value : compactOpsMetricText(value, data.locale);
+  }
+
+  if (data.format === "plain") {
+    const value = Math.abs(data.value) >= 1_000 ? formatOpsCompactNumber(data.value, data.locale) : data.value;
+    return `${prefix}${value}${suffix}`;
+  }
   if (data.format === "currency") {
-    return formatOpsCurrency(data.value, {
+    return formatOpsCompactCurrency(data.value, {
       locale: data.locale,
       currency: data.currency,
       currencyDisplay: data.currencyDisplay,
@@ -16,9 +32,9 @@ function formatMetricValue(data: MetricCardData): string {
     });
   }
   if (data.format === "percent") {
-    return `${data.prefix ?? ""}${formatOpsNumber(data.value, data.locale, { maximumFractionDigits: 1 })}%${data.suffix ?? ""}`;
+    return `${prefix}${formatOpsNumber(data.value, data.locale, { maximumFractionDigits: 1 })}%${suffix}`;
   }
-  return `${data.prefix ?? ""}${formatOpsNumber(data.value, data.locale)}${data.suffix ?? ""}`;
+  return `${prefix}${formatOpsCompactNumber(data.value, data.locale)}${suffix}`;
 }
 
 export function MetricCard({ data, ...props }: MetricCardProps) {

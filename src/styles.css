@@ -97,6 +97,42 @@
 .ops-product-card__spec-label { color: #899187; }
 .ops-product-card__spec strong { color: #3f4c40; font-weight: 650; }
 
+/* Client workspace */
+.ops-card--client { display: flex; min-height: 270px; flex-direction: column; padding: 21px; overflow: hidden; isolation: isolate; }
+.ops-card--client.ops-client-card--compact { min-height: 204px; padding: 18px; }
+.ops-card--client.ops-client-card--selected { border-color: #5a8b66; box-shadow: 0 0 0 3px rgb(90 139 102 / 14%), 0 12px 30px rgb(25 36 28 / 8%); }
+.ops-client-card__glow { position: absolute; z-index: 0; top: -120px; right: -88px; width: 245px; height: 245px; pointer-events: none; background: radial-gradient(circle, rgb(106 156 116 / 17%) 0, rgb(106 156 116 / 8%) 34%, transparent 70%); border-radius: 50%; }
+.ops-client-card__header,
+.ops-client-card__description,
+.ops-client-card__details,
+.ops-client-card__metrics,
+.ops-client-card__footer { position: relative; z-index: 1; }
+.ops-client-card__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 11px; }
+.ops-client-card__identity { display: flex; min-width: 0; align-items: center; gap: 13px; }
+.ops-client-card__logo { display: grid; width: 80px; height: 80px; flex: 0 0 auto; place-items: center; overflow: hidden; color: #fff; background: var(--ops-client-accent); border: 1px solid rgb(255 255 255 / 75%); border-radius: 20px; box-shadow: 0 5px 12px color-mix(in srgb, var(--ops-client-accent) 22%, transparent); font-family: Manrope, "DM Sans", sans-serif; font-size: 22px; font-weight: 750; letter-spacing: -.05em; }
+.ops-client-card__logo--image { background: transparent; border-color: transparent; box-shadow: none; }
+.ops-client-card__logo img { display: block; width: 100%; height: 100%; padding: 2px; object-fit: contain; }
+.ops-client-card__heading { min-width: 0; }
+.ops-client-card__heading h3 { margin-top: 3px; overflow-wrap: anywhere; font-size: 19px; }
+.ops-client-card__code { display: block; margin-top: 4px; color: #929a91; font-family: "DM Mono", ui-monospace, monospace; font-size: 9px; letter-spacing: .045em; }
+.ops-client-card__header > .ops-pill { margin-top: 2px; }
+.ops-client-card__description { max-width: 390px; margin-top: 17px !important; color: #717b71; font-size: 12px; line-height: 1.6; }
+.ops-client-card__details { display: flex; min-height: 27px; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 13px; }
+.ops-client-card__details > span { display: inline-flex; align-items: center; gap: 5px; color: #7e887d; font-size: 10px; }
+.ops-client-card__details > span svg { flex: 0 0 auto; color: #91a090; }
+.ops-client-card__details .ops-client-card__industry,
+.ops-client-card__details .ops-client-card__plan { min-height: 23px; padding: 5px 8px; color: #596b5b; background: #f2f5f0; border: 1px solid #e9eee6; border-radius: 7px; font-size: 9px; font-weight: 600; }
+.ops-client-card__details .ops-client-card__plan { color: #766b91; background: #f5f2f8; border-color: #eee9f3; }
+.ops-client-card__metrics { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); margin-top: 17px; padding-top: 14px; border-top: 1px solid #edf0ea; }
+.ops-client-card__metric { display: flex; min-width: 0; flex-direction: column; gap: 5px; padding: 0 9px; border-left: 1px solid #edf0ea; }
+.ops-client-card__metric:first-child { padding-left: 0; border-left: 0; }
+.ops-client-card__metric:last-child { padding-right: 0; }
+.ops-client-card__metric > span { overflow: hidden; color: #929a90; font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.ops-client-card__metric > strong { overflow: hidden; color: #344236; font-size: 16px; font-weight: 700; letter-spacing: -.045em; text-overflow: ellipsis; white-space: nowrap; }
+.ops-client-card__footer { display: flex; align-items: center; justify-content: space-between; gap: 9px; margin-top: auto; padding-top: 13px; color: #5f7863; font-size: 10px; font-weight: 650; }
+.ops-client-card__arrow { display: grid; width: 28px; height: 28px; flex: 0 0 auto; place-items: center; color: #52785a; background: #f0f5ef; border: 1px solid #e6eee4; border-radius: 50%; transition: transform 160ms ease, background 160ms ease; }
+.ops-card--clickable:hover .ops-client-card__arrow { transform: translate(2px,-2px); background: #e8f2e7; }
+
 /* Inventory location */
 .ops-card--inventory { padding: 23px; }
 .ops-inventory-card__heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 22px; }
@@ -225,6 +261,13 @@
   .ops-card--inventory,
   .ops-card--package,
   .ops-card--ticket { padding: 18px; }
+  .ops-card--client { min-height: 256px; padding: 17px; }
+  .ops-client-card__identity { gap: 10px; }
+  .ops-client-card__logo { width: 68px; height: 68px; border-radius: 17px; font-size: 20px; }
+  .ops-client-card__heading h3 { font-size: 17px; }
+  .ops-client-card__header > .ops-pill { gap: 4px; padding-right: 7px; padding-left: 7px; font-size: 9px; }
+  .ops-client-card__metric { padding: 0 6px; }
+  .ops-client-card__metric > strong { font-size: 14px; }
   .ops-card--event { grid-template-columns: 49px minmax(0,1fr); gap: 12px; padding: 17px; }
   .ops-event-card__calendar { width: 48px; height: 57px; }
   .ops-event-card__calendar strong { font-size: 21px; }

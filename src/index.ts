@@ -2,6 +2,8 @@ import "./styles.css";
 
 export { ProductCard } from "./components/ProductCard";
 export type { ProductCardProps } from "./components/ProductCard";
+export { ClientCard } from "./components/ClientCard";
+export type { ClientCardProps } from "./components/ClientCard";
 export { InventoryLocationCard } from "./components/InventoryLocationCard";
 export type { InventoryLocationCardProps } from "./components/InventoryLocationCard";
 export { PackageCard } from "./components/PackageCard";
@@ -18,6 +20,8 @@ export { formatOpsCurrency, formatOpsDateTime, formatOpsNumber, formatOpsPhone }
 export type {
   EventAttendee,
   EventDetailsCardData,
+  ClientCardData,
+  ClientCardMetric,
   InventoryLocationCardData,
   MetricCardData,
   OpsCardProps,

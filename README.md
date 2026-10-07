@@ -21,7 +21,7 @@ OpsCards turns common operational records into ready-to-use React cards. Pass in
 |---|---|
 | [Open the live component studio in StackBlitz](https://stackblitz.com/github/nahushr/opscards?file=examples/src/App.tsx&startScript=dev:example) | `npm ci` → `npm run dev:example` → [localhost:7003](http://localhost:7003) |
 
-The example has a tab for each card, desktop and mobile previews, and optional hover and click snackbars so you can see the interaction callbacks in action. It uses sample records from product, inventory, packaging, calendar, dashboard, support, and purchase order workflows.
+The example has a tab for each card, desktop and mobile previews, and optional hover and click snackbars so you can see the interaction callbacks in action. It also includes a three-client portfolio and a dashboard row with compact revenue, order, and fulfillment metrics.
 
 ## Install
 
@@ -81,6 +81,7 @@ Clickable cards respond to mouse, Enter, and Space. The example's snackbars are 
 | Component | Required data | Typical use |
 |---|---|---|
 | `ProductCard` | `title` | Storefronts, catalogs, product pickers |
+| `ClientCard` | `name` | Client pickers, account portfolios, workspace dashboards |
 | `InventoryLocationCard` | `name`, `onHand`, `reorderPoint` | Warehouse and pickup location stock |
 | `PackageCard` | `name` | Package dimensions, weight, capacity, and pricing |
 | `EventDetailsCard` | `title`, `startAt` | Event time, location, organizer, attendees, and priority |
@@ -89,6 +90,31 @@ Clickable cards respond to mouse, Enter, and Space. The example's snackbars are 
 | `OrderLineItemCard` | `productTitle`, `quantity`, `unitPrice` | Purchase order and fulfillment line items |
 
 Each data type accepts optional `id`, `locale`, and `timeZone` fields where applicable. Optional data is omitted cleanly when it is not supplied.
+
+`ClientCard` supports optional client branding, a logo or initials tile, status, plan, industry, location, and up to three summary metrics. Set `selected` to mark the active workspace and `compact` for denser account pickers. Use its callback to open a selected client's workspace:
+
+```tsx
+import { ClientCard } from "@simplishelf/opscards";
+import type { ClientCardData } from "@simplishelf/opscards";
+
+const client: ClientCardData = {
+  id: "northstar-retail",
+  name: "Northstar Retail",
+  clientCode: "CLIENT · NS-2048",
+  industry: "Apparel & lifestyle",
+  location: "Austin, TX · 14 stores",
+  status: "Active",
+  plan: "Enterprise",
+  accentColor: "#4c7655",
+  metrics: [
+    { label: "Revenue", value: "$10.2M" },
+    { label: "Orders", value: "248K" },
+    { label: "Stores", value: 14 },
+  ],
+};
+
+<ClientCard data={client} onClick={(record) => openWorkspace(record.id)} />
+```
 
 ## Formatting for your region
 
@@ -108,6 +134,8 @@ Cards use the browser's `Intl` APIs to format amounts and dates. Pass the custom
 ```
 
 Money values are major units by default (`12.50` means twelve and a half). For integer minor-unit values, set `amountInMinorUnits: true`; `minorUnits` defaults to `2`. Set `currencyDisplay: "code"` when you want an unambiguous ISO code instead of a symbol. Phone fields accept international numbers such as `+44 20 7946 0958`. For national numbers, also pass `phoneCountryCode` as a two-letter country code. Event and support data use this shape:
+
+Metric cards compact values of 1,000 and above with `K`, `M`, `B`, and `T` suffixes (for example, `$10,044.09` displays as `$10.04K`). This also works when a metric value is supplied as a preformatted currency string. Percentages and nonnumeric text remain unchanged.
 
 ```ts
 requester: {
@@ -133,7 +161,7 @@ The card owns its information hierarchy and component styling. Use `className` o
 
 ## Example project
 
-The [Vite example](examples/src/App.tsx) is a small component studio, not a separate design system. It switches between all seven cards, demonstrates regional formats, and adapts each component to a mobile-width viewport. Run it locally with:
+The [Vite example](examples/src/App.tsx) is a small component studio, not a separate design system. It switches between all eight cards, demonstrates regional formats, and adapts each component to a mobile-width viewport. Run it locally with:
 
 ```sh
 npm ci

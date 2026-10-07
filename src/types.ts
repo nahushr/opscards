@@ -49,6 +49,26 @@ export interface ProductCardData extends RegionFormat {
   specs?: Record<string, string | number>;
 }
 
+export interface ClientCardMetric {
+  label: string;
+  value: string | number;
+}
+
+/** A client or organization record for account pickers and workspace dashboards. */
+export interface ClientCardData extends RegionFormat {
+  id?: string;
+  name: string;
+  clientCode?: string;
+  description?: string;
+  industry?: string;
+  location?: string;
+  logoUrl?: string;
+  status?: string;
+  plan?: string;
+  accentColor?: string;
+  metrics?: ClientCardMetric[];
+}
+
 export interface InventoryLocationCardData extends RegionFormat {
   id?: string;
   name: string;

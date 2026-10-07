@@ -1,5 +1,6 @@
 import { type KeyboardEvent, type ReactNode, useCallback, useEffect, useRef, useState } from "react";
 import {
+  ClientCard,
   EventDetailsCard,
   InventoryLocationCard,
   MetricCard,
@@ -7,6 +8,7 @@ import {
   PackageCard,
   ProductCard,
   SupportTicketCard,
+  type ClientCardData,
   type EventDetailsCardData,
   type InventoryLocationCardData,
   type MetricCardData,
@@ -16,7 +18,7 @@ import {
   type SupportTicketCardData,
 } from "@simplishelf/opscards";
 
-type CardId = "product" | "inventory" | "package" | "event" | "metric" | "ticket" | "order";
+type CardId = "product" | "inventory" | "package" | "event" | "client" | "metric" | "ticket" | "order";
 type ViewMode = "desktop" | "mobile";
 type ToastMessage = { title: string; message: string };
 
@@ -25,9 +27,10 @@ const CARD_TYPES: { id: CardId; number: string; title: string; kind: string; cod
   { id: "inventory", number: "02", title: "Inventory", kind: "OPERATIONS", code: `<InventoryLocationCard data={location} />` },
   { id: "package", number: "03", title: "Package", kind: "FULFILLMENT", code: `<PackageCard data={packageSpec} />` },
   { id: "event", number: "04", title: "Event", kind: "CALENDAR", code: `<EventDetailsCard data={event} />` },
-  { id: "metric", number: "05", title: "Metric", kind: "DASHBOARD", code: `<MetricCard data={revenue} />` },
-  { id: "ticket", number: "06", title: "Support", kind: "CUSTOMER CARE", code: `<SupportTicketCard data={ticket} />` },
-  { id: "order", number: "07", title: "Order item", kind: "PURCHASE ORDER", code: `<OrderLineItemCard data={lineItem} />` },
+  { id: "client", number: "05", title: "Client", kind: "WORKSPACE", code: `<ClientCard data={client} onClick={(client) => console.log(client.id)} />` },
+  { id: "metric", number: "06", title: "Metric", kind: "DASHBOARD", code: `<MetricCard data={revenue} />` },
+  { id: "ticket", number: "07", title: "Support", kind: "CUSTOMER CARE", code: `<SupportTicketCard data={ticket} />` },
+  { id: "order", number: "08", title: "Order item", kind: "PURCHASE ORDER", code: `<OrderLineItemCard data={lineItem} />` },
 ];
 
 const product: ProductCardData = {
@@ -101,20 +104,112 @@ const event: EventDetailsCardData = {
   description: "Final assortment, seasonal depth, and launch dates.",
 };
 
+const client: ClientCardData = {
+  id: "northstar-retail",
+  name: "Northstar Retail",
+  clientCode: "CLIENT · NS-2048",
+  description: "Modern essentials for everyday adventures, across every channel.",
+  industry: "Apparel & lifestyle",
+  location: "Austin, TX · 14 stores",
+  status: "Healthy",
+  plan: "Enterprise",
+  accentColor: "#4c7655",
+  metrics: [
+    { label: "Revenue", value: "$10.2M" },
+    { label: "Orders", value: "248K" },
+    { label: "Stores", value: 14 },
+  ],
+};
+
+const clientPortfolio: ClientCardData[] = [
+  client,
+  {
+    id: "field-and-fable",
+    name: "Field & Fable",
+    clientCode: "CLIENT · FF-1172",
+    description: "Thoughtful home goods, made to be lived with.",
+    industry: "Home & garden",
+    location: "Portland, OR · 8 stores",
+    status: "Active",
+    plan: "Growth",
+    accentColor: "#9b7650",
+    metrics: [
+      { label: "Revenue", value: "$2.8M" },
+      { label: "Orders", value: "64K" },
+      { label: "Stores", value: 8 },
+    ],
+  },
+  {
+    id: "goodkind-market",
+    name: "Goodkind Market",
+    clientCode: "CLIENT · GK-3051",
+    description: "A neighborhood market growing into a national favorite.",
+    industry: "Food & grocery",
+    location: "Brooklyn, NY · 3 stores",
+    status: "Onboarding",
+    plan: "Starter",
+    accentColor: "#648390",
+    metrics: [
+      { label: "Revenue", value: "$840K" },
+      { label: "Orders", value: "18.6K" },
+      { label: "Stores", value: 3 },
+    ],
+  },
+];
+
 const revenue: MetricCardData = {
   id: "revenue-month",
   label: "Revenue this month",
-  value: 28490,
+  value: 10_200_000,
   format: "currency",
   currency: "USD",
   currencyDisplay: "narrowSymbol",
   locale: "en-US",
   change: 12.8,
-  comparisonLabel: "vs. September",
-  detail: "On track for your October target",
+  comparisonLabel: "vs. last month",
+  detail: "Across all active client workspaces",
   iconName: "revenue",
   trend: [18, 23, 21, 32, 28, 43, 39, 52, 62, 57, 75],
 };
+
+const dashboardMetrics: MetricCardData[] = [
+  revenue,
+  {
+    id: "orders-month",
+    label: "Orders this month",
+    value: 248_400,
+    format: "number",
+    locale: "en-US",
+    change: 8.2,
+    comparisonLabel: "vs. last month",
+    iconName: "orders",
+    trend: [24, 27, 31, 28, 37, 41, 40, 47, 53, 61],
+  },
+  {
+    id: "average-order-value",
+    label: "Average order value",
+    value: 42.8,
+    format: "currency",
+    currency: "USD",
+    currencyDisplay: "narrowSymbol",
+    locale: "en-US",
+    change: 3.6,
+    comparisonLabel: "vs. last month",
+    iconName: "trend",
+    trend: [29, 31, 30, 36, 35, 39, 37, 42, 45, 48],
+  },
+  {
+    id: "fulfillment-rate",
+    label: "Fulfillment rate",
+    value: 98.6,
+    format: "percent",
+    locale: "en-US",
+    change: 1.4,
+    comparisonLabel: "vs. last month",
+    iconName: "inventory",
+    trend: [83, 86, 85, 89, 92, 91, 94, 92, 97, 99],
+  },
+];
 
 const ticket: SupportTicketCardData = {
   id: "TKT-2048",
@@ -146,7 +241,7 @@ const lineItem: OrderLineItemCardData = {
   location: "Berlin fulfilment",
 };
 
-const DATA: Record<CardId, object> = { product, inventory: location, package: packageSpec, event, metric: revenue, ticket, order: lineItem };
+const DATA: Record<CardId, object> = { product, inventory: location, package: packageSpec, event, client, metric: revenue, ticket, order: lineItem };
 
 function ComponentPreview({ id, actions }: { id: CardId; actions: { onClick: () => void; onHover: () => void } }) {
   switch (id) {
@@ -154,6 +249,7 @@ function ComponentPreview({ id, actions }: { id: CardId; actions: { onClick: () 
     case "inventory": return <InventoryLocationCard data={location} {...actions} />;
     case "package": return <PackageCard data={packageSpec} {...actions} />;
     case "event": return <EventDetailsCard data={event} {...actions} />;
+    case "client": return <ClientCard data={client} {...actions} />;
     case "metric": return <MetricCard data={revenue} {...actions} />;
     case "ticket": return <SupportTicketCard data={ticket} {...actions} />;
     case "order": return <OrderLineItemCard data={lineItem} {...actions} />;
@@ -183,6 +279,7 @@ function CardTabIcon({ id }: { id: CardId }) {
     inventory: <><path d="M16.7 8.3c0 4.4-6.7 9.2-6.7 9.2S3.3 12.7 3.3 8.3a6.7 6.7 0 1 1 13.4 0Z"/><circle cx="10" cy="8" r="2"/></>,
     package: <><path d="m10 2.5 7 4v7l-7 4-7-4v-7l7-4Z"/><path d="m3.5 6.5 6.5 4 6.5-4M10 10.5v7"/></>,
     event: <><rect x="3" y="4.5" width="14" height="13" rx="2"/><path d="M6.5 2.5v4M13.5 2.5v4M3 8.5h14"/></>,
+    client: <><rect x="3" y="4" width="14" height="13" rx="2"/><circle cx="8" cy="9" r="2"/><path d="M5.5 14a2.7 2.7 0 0 1 5 0M13 8h2M13 11h2"/></>,
     metric: <><path d="m3 14 4-4 3 3 7-8"/><path d="M12.5 5H17v4.5"/></>,
     ticket: <><path d="M3 11V9a7 7 0 0 1 14 0v2"/><path d="M3 10h3v6H5a2 2 0 0 1-2-2v-4ZM17 10h-3v6h1a2 2 0 0 0 2-2v-4Z"/></>,
     order: <><path d="M3 6.5 10 3l7 3.5v8L10 18l-7-3.5v-8Z"/><path d="m3.5 6.8 6.5 3.4 6.5-3.4M10 10.2V18"/></>,
@@ -235,7 +332,7 @@ export default function App() {
           <span>ops<span>cards</span></span>
         </a>
         <nav className="topnav" aria-label="Main navigation">
-          <a href="#playground">Components <span>07</span></a>
+          <a href="#playground">Components <span>08</span></a>
           <a href="https://github.com/nahushr/opscards" target="_blank" rel="noreferrer">GitHub <span className="external-arrow">↗</span></a>
           <a className="topnav__install" href="#install">Get started <span>↘</span></a>
         </nav>
@@ -246,14 +343,14 @@ export default function App() {
           <div className="hero__main">
             <div className="hero__eyebrow"><span className="status-orb" /> OPEN SOURCE COMPONENTS FOR DAILY OPERATIONS</div>
             <h1>Useful data.<br /><em>Already at home.</em></h1>
-            <p>Seven considered cards for the things your team keeps track of. Bring your data; we’ll bring the layout, detail, and a little polish.</p>
+            <p>Eight considered cards for the things your team keeps track of. Bring your data; we’ll bring the layout, detail, and a little polish.</p>
             <div className="hero__actions">
               <a href="#playground" className="button button--dark">Explore the cards <span>↓</span></a>
               <span className="hero__tech"><b>React</b><i /> TypeScript <i /> MIT</span>
             </div>
           </div>
           <div className="hero-note" aria-label="The OpsCards approach">
-            <div className="hero-note__number">01<span>—</span>07</div>
+            <div className="hero-note__number">01<span>—</span>08</div>
             <span className="hero-note__rule" />
             <span className="hero-note__caption">CARD TYPES<br />ONE EASY API</span>
             <div className="hero-note__stack" aria-hidden="true"><span /><span /><span /></div>
@@ -263,7 +360,7 @@ export default function App() {
 
         <section className="playground-section" id="playground">
           <div className="section-heading">
-            <div><span className="section-kicker">THE COMPONENT STUDIO <span>01 / 07</span></span><h2>Pick a card.<br /><span>Bring it to life.</span></h2></div>
+            <div><span className="section-kicker">THE COMPONENT STUDIO <span>01 / 08</span></span><h2>Pick a card.<br /><span>Bring it to life.</span></h2></div>
             <p>Each card turns a familiar ops workflow into one small, useful component. Choose one to preview it at full size.</p>
           </div>
 
@@ -328,6 +425,27 @@ export default function App() {
               <div className="studio__data-count"><span>↳</span> <strong>{Object.keys(DATA[activeId]).length} fields</strong> in. One ready-to-use card out.</div>
             </div>
           </div>
+
+          <div className="showcase-block client-showcase">
+            <div className="showcase-block__heading">
+              <div><span className="section-kicker">CLIENT WORKSPACES <span>01 / 03</span></span><h3>Every account, <em>at a glance.</em></h3></div>
+              <p>Branded client cards for account pickers, portfolio views, and workspace dashboards.</p>
+            </div>
+            <div className="client-showcase__grid">
+              {clientPortfolio.map((clientRecord) => <ClientCard key={clientRecord.id} data={clientRecord} />)}
+            </div>
+          </div>
+
+          <div className="showcase-block dashboard-showcase">
+            <div className="showcase-block__heading">
+              <div><span className="section-kicker">DASHBOARD METRICS <span>02 / 03</span></span><h3>Big numbers, <em>kept tidy.</em></h3></div>
+              <p>Compact values keep the whole KPI row readable, from thousands through millions.</p>
+            </div>
+            <div className="metric-showcase__grid">
+              {dashboardMetrics.map((metric) => <MetricCard key={metric.id} data={metric} />)}
+            </div>
+          </div>
+
           <p className="playground-caption"><span>↗</span> Try the hover and click switches above, then resize the window. Every card is keyboard accessible and ready to make your own.</p>
         </section>
 
@@ -341,7 +459,7 @@ export default function App() {
         </section>
 
         <section className="install-panel">
-          <div><span className="section-kicker">GET MOVING</span><h2>One install.<br /><span>Seven less things to build.</span></h2></div>
+          <div><span className="section-kicker">GET MOVING</span><h2>One install.<br /><span>Eight less things to build.</span></h2></div>
           <div className="install-command"><span className="install-command__label">ADD THE PACKAGE</span><code><i>$</i> npm install @simplishelf/opscards</code><span className="install-command__hint">Then import the component and stylesheet once.</span></div>
         </section>
       </main>
