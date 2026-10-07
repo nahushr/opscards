@@ -33,18 +33,16 @@ export function ClientCard({ data, className, style: customStyle, selected = fal
             {data.clientCode && <span className="ops-client-card__code">{data.clientCode}</span>}
           </div>
         </div>
-        <Pill tone={getStatusTone(data.status ?? "Active")} dot>{data.status ?? "Active"}</Pill>
       </div>
 
       {data.description && <p className="ops-client-card__description">{data.description}</p>}
 
-      {(data.industry || data.location || data.plan) && (
-        <div className="ops-client-card__details">
-          {data.industry && <span className="ops-client-card__industry">{data.industry}</span>}
-          {data.location && <span><Icon name="map-pin" size={14} />{data.location}</span>}
-          {data.plan && <span className="ops-client-card__plan">{data.plan}</span>}
-        </div>
-      )}
+      <div className="ops-client-card__details">
+        <Pill tone={getStatusTone(data.status ?? "Active")} dot>{data.status ?? "Active"}</Pill>
+        {data.industry && <span className="ops-client-card__industry">{data.industry}</span>}
+        {data.location && <span><Icon name="map-pin" size={14} />{data.location}</span>}
+        {data.plan && <span className="ops-client-card__plan">{data.plan}</span>}
+      </div>
 
       {data.metrics && data.metrics.length > 0 && (
         <div className="ops-client-card__metrics">
