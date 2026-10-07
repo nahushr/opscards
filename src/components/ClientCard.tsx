@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import type { ClientCardData, OpsCardProps } from "../types";
 import { formatOpsCompactNumber, getInitials } from "../utils/formatters";
-import { CardFrame, getStatusTone, Icon, Pill } from "./shared";
+import { CardFrame, Icon } from "./shared";
 
 export type ClientCardProps = OpsCardProps<ClientCardData> & {
   /** Marks this client as the current selection. */
@@ -20,7 +20,7 @@ export function ClientCard({ data, className, style: customStyle, selected = fal
   const cardClassName = [className, selected && "ops-client-card--selected", compact && "ops-client-card--compact"].filter(Boolean).join(" ");
 
   return (
-    <CardFrame data={data} variant="client" className={cardClassName} style={style} ariaLabel={`${data.name} client workspace${selected ? ", selected" : ""}`} {...props}>
+    <CardFrame data={data} variant="client" className={cardClassName} style={style} ariaLabel={`${data.name}${selected ? ", selected" : ""}`} {...props}>
       <div className="ops-client-card__glow" aria-hidden="true" />
       <div className="ops-client-card__header">
         <div className="ops-client-card__identity">
@@ -28,7 +28,6 @@ export function ClientCard({ data, className, style: customStyle, selected = fal
             {data.logoUrl ? <img src={data.logoUrl} alt="" /> : getInitials(data.name)}
           </span>
           <div className="ops-client-card__heading">
-            <span className="ops-eyebrow">Client workspace</span>
             <h3 data-test-id={nameTestId}>{data.name}</h3>
             {data.clientCode && <span className="ops-client-card__code">{data.clientCode}</span>}
           </div>
@@ -37,12 +36,13 @@ export function ClientCard({ data, className, style: customStyle, selected = fal
 
       {data.description && <p className="ops-client-card__description">{data.description}</p>}
 
-      <div className="ops-client-card__details">
-        <Pill tone={getStatusTone(data.status ?? "Active")} dot>{data.status ?? "Active"}</Pill>
-        {data.industry && <span className="ops-client-card__industry">{data.industry}</span>}
-        {data.location && <span><Icon name="map-pin" size={14} />{data.location}</span>}
-        {data.plan && <span className="ops-client-card__plan">{data.plan}</span>}
-      </div>
+      {(data.industry || data.location || data.plan) && (
+        <div className="ops-client-card__details">
+          {data.industry && <span className="ops-client-card__industry">{data.industry}</span>}
+          {data.location && <span><Icon name="map-pin" size={14} />{data.location}</span>}
+          {data.plan && <span className="ops-client-card__plan">{data.plan}</span>}
+        </div>
+      )}
 
       {data.metrics && data.metrics.length > 0 && (
         <div className="ops-client-card__metrics">

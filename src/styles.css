@@ -113,7 +113,7 @@
 .ops-client-card__logo--image { background: transparent; border-color: transparent; box-shadow: none; }
 .ops-client-card__logo img { display: block; width: 100%; height: 100%; padding: 2px; object-fit: contain; }
 .ops-client-card__heading { flex: 1 1 auto; min-width: 0; }
-.ops-client-card__heading h3 { margin-top: 3px; overflow-wrap: anywhere; font-size: 19px; }
+.ops-client-card__heading h3 { margin-top: 3px; overflow: hidden; font-size: 19px; text-overflow: ellipsis; white-space: nowrap; }
 .ops-client-card__code { display: block; margin-top: 4px; color: #929a91; font-family: "DM Mono", ui-monospace, monospace; font-size: 9px; letter-spacing: .045em; }
 .ops-client-card__description { max-width: 390px; margin-top: 17px !important; color: #717b71; font-size: 12px; line-height: 1.6; }
 .ops-client-card__details { display: flex; min-height: 27px; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 13px; }
@@ -264,7 +264,6 @@
   .ops-client-card__identity { gap: 10px; }
   .ops-client-card__logo { width: 68px; height: 68px; border-radius: 17px; font-size: 20px; }
   .ops-client-card__heading h3 { font-size: 17px; }
-  .ops-client-card__details > .ops-pill { gap: 4px; padding-right: 7px; padding-left: 7px; font-size: 9px; }
   .ops-client-card__metric { padding: 0 6px; }
   .ops-client-card__metric > strong { font-size: 14px; }
   .ops-card--event { grid-template-columns: 49px minmax(0,1fr); gap: 12px; padding: 17px; }
