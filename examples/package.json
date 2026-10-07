@@ -9,7 +9,7 @@
     "preview": "vite preview --host 0.0.0.0 --port 7003"
   },
   "dependencies": {
-    "@simplishelf/opscards": "^0.2.1",
+    "@simplishelf/opscards": "^0.2.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
