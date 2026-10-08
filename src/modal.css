@@ -78,10 +78,10 @@
   justify-content: space-between;
   gap: 16px;
   padding: 16px 24px;
-  color: #fff;
-  background: #083344;
+  color: #0f172a;
+  background: #f8fafc;
   border: 0;
-  border-bottom: 1px solid #164e63;
+  border-bottom: 1px solid #e2e8f0;
   font-size: 16px;
   font-weight: 600;
   line-height: 1.4;
@@ -92,7 +92,7 @@
 .ops-modal__header h3,
 .ops-modal__header .MuiTypography-root {
   margin: 0;
-  color: #fff;
+  color: #0f172a;
   font-size: 16px;
   font-weight: 600;
   letter-spacing: -.01em;
@@ -102,7 +102,7 @@
 .ops-modal__header p,
 .ops-modal__header .MuiTypography-root + .MuiTypography-root {
   margin: 2px 0 0;
-  color: rgb(165 243 252 / 82%);
+  color: #64748b;
   font-size: 12px;
   font-weight: 400;
   line-height: 1.5;
@@ -117,7 +117,7 @@
   flex: 0 0 auto;
   place-items: center;
   padding: 0;
-  color: #a5f3fc;
+  color: #0e7490;
   background: transparent;
   border: 0;
   border-radius: 8px;
@@ -128,10 +128,10 @@
   transition: background-color 140ms ease, color 140ms ease;
 }
 
-.ops-modal__close:hover { color: #fff; background: rgb(255 255 255 / 10%); }
-.ops-modal__close:focus-visible { outline: 2px solid #67e8f9; outline-offset: 2px; }
-.ops-modal__header .MuiIconButton-root { color: #a5f3fc; border-radius: 8px; }
-.ops-modal__header .MuiIconButton-root:hover { color: #fff; background: rgb(255 255 255 / 10%); }
+.ops-modal__close:hover { color: #083344; background: #cffafe; }
+.ops-modal__close:focus-visible { outline: 2px solid #0891b2; outline-offset: 2px; }
+.ops-modal__header .MuiIconButton-root { color: #0e7490; border-radius: 8px; }
+.ops-modal__header .MuiIconButton-root:hover { color: #083344; background: #cffafe; }
 
 .ops-modal__body,
 .ops-modal__body.MuiDialogContent-root {
