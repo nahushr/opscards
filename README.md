@@ -13,7 +13,7 @@
   <a href="https://stackblitz.com/github/nahushr/opscards?file=examples/src/App.tsx&amp;startScript=dev:example"><img alt="Open the OpsCards example in StackBlitz" src="https://developer.stackblitz.com/img/open_in_stackblitz.svg" /></a>
 </p>
 
-OpsCards turns common operational records into ready-to-use React cards. Pass in typed data and get back a considered layout with the spacing, hierarchy, status, and responsive behavior already handled.
+OpsCards turns common operational records into ready-to-use React cards. Pass in typed data and get back a considered layout with the spacing, hierarchy, status, and responsive behavior already handled. It also includes reusable permission and user-group cards for access-control dialogs.
 
 ## Demo
 
@@ -21,7 +21,7 @@ OpsCards turns common operational records into ready-to-use React cards. Pass in
 |---|---|
 | [Open the live component studio in StackBlitz](https://stackblitz.com/github/nahushr/opscards?file=examples/src/App.tsx&startScript=dev:example) | `npm ci` → `npm run dev:example` → [localhost:7003](http://localhost:7003) |
 
-The example has a tab for each card, desktop and mobile previews, and optional hover and click snackbars so you can see the interaction callbacks in action. It also includes a three-client portfolio and a dashboard row with compact revenue, order, and fulfillment metrics.
+The example has a tab for each operational card, desktop and mobile previews, and optional hover and click snackbars so you can see the interaction callbacks in action. It also includes a three-client portfolio, dashboard metrics, and permission and user-group card layouts.
 
 ## Install
 
@@ -88,6 +88,33 @@ Clickable cards respond to mouse, Enter, and Space. The example's snackbars are 
 | `MetricCard` | `label`, `value` | KPI and dashboard summaries |
 | `SupportTicketCard` | `ticketNumber`, `summary`, `status`, `createdAt` | Clickable support queue items |
 | `OrderLineItemCard` | `productTitle`, `quantity`, `unitPrice` | Purchase order and fulfillment line items |
+
+## Access-control cards
+
+`PermissionCategoryCard` groups reusable `PermissionCard` rows. `UserGroupCard` presents a group name, description, optional icon, and metadata. These components provide the card structure and default styling while accepting `className` and part-specific class names for app overrides.
+
+```tsx
+import {
+  PermissionCard,
+  PermissionCategoryCard,
+  UserGroupCard,
+} from "@simplishelf/opscards";
+
+<PermissionCategoryCard title="User management">
+  <PermissionCard
+    code="USER_READ"
+    name="View users"
+    description="See user profiles and account status."
+  />
+</PermissionCategoryCard>
+
+<UserGroupCard
+  name="Workspace administrators"
+  description="Manage users, settings, and workspace access."
+  icon={<UsersIcon />}
+  metadata="12 members · Updated today"
+/>
+```
 
 Each data type accepts optional `id`, `locale`, and `timeZone` fields where applicable. Optional data is omitted cleanly when it is not supplied.
 
@@ -195,7 +222,7 @@ The card owns its information hierarchy and component styling. Use `className` o
 
 ## Example project
 
-The [Vite example](examples/src/App.tsx) is a small component studio, not a separate design system. It switches between all eight cards, demonstrates regional formats, and adapts each component to a mobile-width viewport. Run it locally with:
+The [Vite example](examples/src/App.tsx) is a small component studio, not a separate design system. It switches between all eight operational cards, demonstrates regional formats, and adapts the cards to a mobile-width viewport. Access-control cards have their own showcase below the studio. Run it locally with:
 
 ```sh
 npm ci

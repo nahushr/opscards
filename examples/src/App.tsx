@@ -5,9 +5,12 @@ import {
   InventoryLocationCard,
   MetricCard,
   OrderLineItemCard,
+  PermissionCard,
+  PermissionCategoryCard,
   PackageCard,
   ProductCard,
   SupportTicketCard,
+  UserGroupCard,
   type ClientCardData,
   type EventDetailsCardData,
   type InventoryLocationCardData,
@@ -443,6 +446,36 @@ export default function App() {
             </div>
             <div className="metric-showcase__grid">
               {dashboardMetrics.map((metric) => <MetricCard key={metric.id} data={metric} />)}
+            </div>
+          </div>
+
+          <div className="showcase-block access-control-showcase">
+            <div className="showcase-block__heading">
+              <div><span className="section-kicker">ACCESS CONTROL <span>03 / 03</span></span><h3>Permissions and groups, <em>in cards.</em></h3></div>
+              <p>Reusable building blocks for permission dialogs, group membership, and access settings.</p>
+            </div>
+            <div className="access-control-showcase__grid">
+              <div className="access-control-showcase__permissions">
+                <PermissionCategoryCard title="User management">
+                  <PermissionCard code="USER_READ" name="View users" description="See user profiles and account status." />
+                  <PermissionCard code="USER_INVITE" name="Invite users" description="Add teammates to this workspace." />
+                  <PermissionCard code="USER_EDIT" name="Manage user access" />
+                </PermissionCategoryCard>
+              </div>
+              <div className="access-control-showcase__groups">
+                <UserGroupCard
+                  name="Workspace administrators"
+                  description="Manage users, settings, and workspace access."
+                  icon={<span aria-hidden="true">✦</span>}
+                  metadata={<span>12 members · Updated today</span>}
+                />
+                <UserGroupCard
+                  name="Merchandising team"
+                  description="Coordinate product catalog and seasonal assortment work."
+                  icon={<span aria-hidden="true">✦</span>}
+                  metadata={<span>8 members · Updated yesterday</span>}
+                />
+              </div>
             </div>
           </div>
 
