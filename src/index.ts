@@ -1,5 +1,19 @@
 import "./styles.css";
+import "./modal.css";
 
+export {
+  OpsModal,
+  OpsModalActions,
+  OpsModalContent,
+  OpsModalContentText,
+  OpsModalHeader,
+} from "./components/OpsModal";
+export type {
+  OpsModalCloseReason,
+  OpsModalMaxWidth,
+  OpsModalProps,
+  OpsModalSectionProps,
+} from "./components/OpsModal";
 export { ProductCard } from "./components/ProductCard";
 export type { ProductCardProps } from "./components/ProductCard";
 export { ClientCard } from "./components/ClientCard";

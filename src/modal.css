@@ -1,0 +1,238 @@
+.ops-modal,
+.ops-modal *,
+.ops-modal *::before,
+.ops-modal *::after {
+  box-sizing: border-box;
+}
+
+.ops-modal {
+  --ops-modal-ink: #0f172a;
+  --ops-modal-muted: #475569;
+  --ops-modal-line: #e2e8f0;
+  position: fixed;
+  z-index: 1400;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(12px, 3vw, 32px);
+  color: var(--ops-modal-ink);
+  font-family: inherit;
+  isolation: isolate;
+}
+.ops-modal[hidden] { display: none; }
+
+.ops-modal__backdrop {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: rgb(2 6 23 / 60%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.ops-modal[data-hide-backdrop="true"] .ops-modal__backdrop {
+  background: transparent;
+  backdrop-filter: none;
+}
+
+.ops-modal__surface {
+  display: flex;
+  width: min(100%, 56rem);
+  max-height: min(86dvh, 60rem);
+  min-height: 0;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--ops-modal-ink);
+  background: #fff;
+  border: 1px solid var(--ops-modal-line);
+  border-radius: 12px;
+  box-shadow: 0 24px 48px rgb(15 23 42 / 22%);
+  font-family: inherit;
+  outline: none;
+  animation: ops-modal-enter 180ms cubic-bezier(.2,.75,.25,1) both;
+}
+
+.ops-modal__surface[data-max-width="xs"] { max-width: 26rem; }
+.ops-modal__surface[data-max-width="sm"] { max-width: 40rem; }
+.ops-modal__surface[data-max-width="md"] { max-width: 56rem; }
+.ops-modal__surface[data-max-width="lg"] { max-width: 72rem; }
+.ops-modal__surface[data-max-width="xl"] { max-width: 88rem; }
+.ops-modal__surface[data-max-width="none"] { max-width: none; }
+.ops-modal__surface[data-full-width="true"] { width: 100%; }
+.ops-modal__surface[data-full-screen="true"] {
+  width: 100%;
+  max-width: none;
+  max-height: 100dvh;
+  height: 100dvh;
+  border: 0;
+  border-radius: 0;
+}
+
+.ops-modal__header,
+.ops-modal__header.MuiDialogTitle-root {
+  display: flex;
+  min-height: 62px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 24px;
+  color: #fff;
+  background: #083344;
+  border: 0;
+  border-bottom: 1px solid #164e63;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.ops-modal__header h1,
+.ops-modal__header h2,
+.ops-modal__header h3,
+.ops-modal__header .MuiTypography-root {
+  margin: 0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  line-height: 1.4;
+}
+
+.ops-modal__header p,
+.ops-modal__header .MuiTypography-root + .MuiTypography-root {
+  margin: 2px 0 0;
+  color: rgb(165 243 252 / 82%);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.ops-modal__heading { min-width: 0; }
+
+.ops-modal__close {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  place-items: center;
+  padding: 0;
+  color: #a5f3fc;
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 25px;
+  line-height: 1;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.ops-modal__close:hover { color: #fff; background: rgb(255 255 255 / 10%); }
+.ops-modal__close:focus-visible { outline: 2px solid #67e8f9; outline-offset: 2px; }
+.ops-modal__header .MuiIconButton-root { color: #a5f3fc; border-radius: 8px; }
+.ops-modal__header .MuiIconButton-root:hover { color: #fff; background: rgb(255 255 255 / 10%); }
+
+.ops-modal__body,
+.ops-modal__body.MuiDialogContent-root {
+  display: block;
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 24px;
+  color: var(--ops-modal-muted);
+  background: #fff;
+  border: 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.ops-modal__body--dividers { border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+.ops-modal__body .MuiInputBase-input,
+.ops-modal__body input,
+.ops-modal__body textarea,
+.ops-modal__body select { font-family: inherit; font-size: 14px; }
+.ops-modal__body input:not(.MuiInputBase-input),
+.ops-modal__body textarea:not(.MuiInputBase-input),
+.ops-modal__body select:not(.MuiSelect-select) {
+  max-width: 100%;
+  padding: 10px 14px;
+  color: #0f172a;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.ops-modal__body input:focus-visible,
+.ops-modal__body textarea:focus-visible,
+.ops-modal__body select:focus-visible {
+  background: #fff;
+  border-color: #0e7490;
+  outline: 2px solid rgb(6 182 212 / 20%);
+}
+
+.ops-modal__content-text,
+.ops-modal__body .MuiDialogContentText-root,
+.ops-modal__body .MuiFormHelperText-root {
+  margin: 0;
+  color: #475569;
+  font-size: 12px;
+  line-height: 1.625;
+}
+
+.ops-modal__footer,
+.ops-modal__footer.MuiDialogActions-root {
+  display: flex;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 12px 24px;
+  background: #f8fafc;
+  border: 0;
+  border-top: 1px solid #e2e8f0;
+}
+
+.ops-modal__footer--compact { gap: 0; }
+.ops-modal__footer :is(button, .MuiButton-root) { font-size: 14px; }
+.ops-modal__footer .MuiButton-contained { color: #083344; background: #06b6d4; }
+.ops-modal__footer .MuiButton-contained:hover { color: #fff; background: #0891b2; }
+.ops-modal__footer .MuiButton-outlined { color: #475569; border-color: #cbd5e1; }
+.ops-modal__footer .MuiButton-outlined:hover { background: #f1f5f9; border-color: #94a3b8; }
+.ops-modal__footer button:not(.MuiButton-root) { padding: 8px 16px; color: #475569; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; font-weight: 600; }
+.ops-modal__footer button:not(.MuiButton-root):hover { background: #f1f5f9; }
+.ops-modal__surface :focus-visible { outline-color: #0891b2; }
+
+.modal-card {
+  box-sizing: border-box;
+  padding: 1rem;
+  color: #0f172a;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  font-size: 0.875rem;
+}
+.modal-card-title { color: #0f172a; font-size: 0.875rem; font-weight: 600; }
+.modal-card-desc { color: #475569; font-size: 0.75rem; line-height: 1.625; }
+
+@keyframes ops-modal-enter {
+  from { opacity: 0; transform: translateY(8px) scale(.99); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ops-modal__surface { animation-duration: 1ms; }
+}
+
+@media (max-width: 640px) {
+  .ops-modal { padding: 10px; }
+  .ops-modal__surface { max-height: calc(100dvh - 20px); }
+  .ops-modal__header,
+  .ops-modal__header.MuiDialogTitle-root { padding: 14px 18px; }
+  .ops-modal__body,
+  .ops-modal__body.MuiDialogContent-root { padding: 18px; }
+  .ops-modal__footer,
+  .ops-modal__footer.MuiDialogActions-root { padding: 12px 18px; }
+}

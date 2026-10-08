@@ -116,6 +116,40 @@ const client: ClientCardData = {
 <ClientCard data={client} onClick={(record) => openWorkspace(record.id)} />
 ```
 
+## Shared modal
+
+`OpsModal` provides the same accessible dialog shell, header, scrollable content, and footer for forms and workflows across your app. Its width, backdrop, close behavior, and CSS classes can be customized without replacing its base styling.
+
+```tsx
+import {
+  OpsModal,
+  OpsModalActions,
+  OpsModalContent,
+} from "@simplishelf/opscards";
+
+<OpsModal
+  open={open}
+  onClose={() => setOpen(false)}
+  title="Add view"
+  subtitle="Name this saved view and choose its filters."
+  maxWidth="sm"
+  fullWidth
+>
+  <OpsModalContent>
+    <label>
+      View name
+      <input autoFocus placeholder="For example, Active users" />
+    </label>
+  </OpsModalContent>
+  <OpsModalActions>
+    <button type="button" onClick={() => setOpen(false)}>Cancel</button>
+    <button type="submit">Save view</button>
+  </OpsModalActions>
+</OpsModal>
+```
+
+Use `OpsModalHeader`, `OpsModalContent`, `OpsModalActions`, and `OpsModalContentText` to compose a custom header or body. `className`, `surfaceClassName`, and `PaperProps.className` allow app-specific styling while retaining the shared modal foundation. The built-in Escape and backdrop behavior is available through `onClose`.
+
 ## Formatting for your region
 
 Cards use the browser's `Intl` APIs to format amounts and dates. Pass the customer's BCP 47 locale, an ISO currency code, and an IANA time zone to match your app:
