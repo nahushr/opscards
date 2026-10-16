@@ -19,6 +19,7 @@ export interface OpsModalProps extends Omit<HTMLAttributes<HTMLDivElement>, "onC
   title?: ReactNode;
   subtitle?: ReactNode;
   closeButtonLabel?: string;
+  closeButtonTestId?: string;
   maxWidth?: OpsModalMaxWidth;
   fullWidth?: boolean;
   fullScreen?: boolean;
@@ -31,7 +32,9 @@ export interface OpsModalProps extends Omit<HTMLAttributes<HTMLDivElement>, "onC
   backdropClassName?: string;
   headerClassName?: string;
   titleClassName?: string;
+  subtitleClassName?: string;
   closeButtonClassName?: string;
+  hideCloseButton?: boolean;
   PaperProps?: HTMLAttributes<HTMLDivElement>;
 }
 
@@ -70,6 +73,7 @@ export const OpsModal = forwardRef<HTMLDivElement, OpsModalProps>(
       title,
       subtitle,
       closeButtonLabel = "Close dialog",
+      closeButtonTestId,
       maxWidth = "md",
       fullWidth = false,
       fullScreen = false,
@@ -83,7 +87,9 @@ export const OpsModal = forwardRef<HTMLDivElement, OpsModalProps>(
       backdropClassName,
       headerClassName,
       titleClassName,
+      subtitleClassName,
       closeButtonClassName,
+      hideCloseButton = false,
       PaperProps,
       "aria-label": ariaLabel,
       "aria-labelledby": ariaLabelledBy,
@@ -204,13 +210,14 @@ export const OpsModal = forwardRef<HTMLDivElement, OpsModalProps>(
             <OpsModalHeader id={titleId} className={headerClassName}>
               <div className="ops-modal__heading">
                 <h2 className={titleClassName}>{title}</h2>
-                {subtitle != null && <p>{subtitle}</p>}
+                {subtitle != null && <p className={subtitleClassName}>{subtitle}</p>}
               </div>
-              {onClose && (
+              {onClose && !hideCloseButton && (
                 <button
                   type="button"
                   className={joinClasses("ops-modal__close", closeButtonClassName)}
                   aria-label={closeButtonLabel}
+                  data-test-id={closeButtonTestId}
                   onClick={(event) => onClose(event, "closeButtonClick")}
                 >
                   <span aria-hidden="true">×</span>

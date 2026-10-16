@@ -1,3 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+:root {
+  --ops-font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --ops-font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --polyform-font-sans: var(--ops-font-sans);
+  --polyform-font-mono: var(--ops-font-mono);
+  --super-data-grid-font-sans: var(--ops-font-sans);
+  --super-data-grid-font-mono: var(--ops-font-mono);
+  --font-sans: var(--ops-font-sans);
+  --font-mono: var(--ops-font-mono);
+}
+
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--ops-font-sans);
+}
+
+code,
+kbd,
+samp,
+pre,
+[data-font-family="mono"],
+.font-mono {
+  font-family: var(--ops-font-mono);
+}
+
 .ops-card {
   --ops-ink: #20251f;
   --ops-muted: #788078;
@@ -16,7 +46,7 @@
   appearance: none;
   font: inherit;
   line-height: inherit;
-  font-family: "DM Sans", Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family: var(--ops-font-sans);
   text-align: left;
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
@@ -33,8 +63,8 @@
 .ops-card--clickable:active { transform: translateY(-1px) scale(.995); }
 .ops-card--clickable:focus-visible { outline: 3px solid #74b794; outline-offset: 3px; }
 .ops-card__description { margin-top: 9px !important; color: var(--ops-muted); font-size: 13px; line-height: 1.6; }
-.ops-eyebrow { display: block; color: #8b9489; font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 9px; font-weight: 500; letter-spacing: .095em; line-height: 1.5; text-transform: uppercase; }
-.ops-microcopy { color: #92998f; font-family: "DM Mono", ui-monospace, monospace; font-size: 10px; }
+.ops-eyebrow { display: block; color: #8b9489; font-family: var(--ops-font-mono); font-size: 9px; font-weight: 500; letter-spacing: .095em; line-height: 1.5; text-transform: uppercase; }
+.ops-microcopy { color: #92998f; font-family: var(--ops-font-mono); font-size: 10px; }
 .ops-card__topline { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .ops-card__arrow { display: grid; width: 30px; height: 30px; flex: 0 0 auto; place-items: center; color: #70796f; background: #f5f6f2; border: 1px solid #edf0e9; border-radius: 50%; }
 .ops-pill { display: inline-flex; min-height: 23px; align-items: center; gap: 6px; padding: 4px 9px; color: #687166; background: #f3f5f1; border: 1px solid #edf0ea; border-radius: 999px; font-size: 10px; font-weight: 600; line-height: 1; white-space: nowrap; }
@@ -109,12 +139,12 @@
 .ops-client-card__footer { position: relative; z-index: 1; }
 .ops-client-card__header { display: flex; align-items: flex-start; justify-content: flex-start; gap: 11px; }
 .ops-client-card__identity { display: flex; flex: 1 1 auto; min-width: 0; align-items: center; gap: 13px; }
-.ops-client-card__logo { display: grid; width: 80px; height: 80px; flex: 0 0 auto; place-items: center; overflow: hidden; color: #fff; background: var(--ops-client-accent); border: 1px solid rgb(255 255 255 / 75%); border-radius: 20px; box-shadow: 0 5px 12px color-mix(in srgb, var(--ops-client-accent) 22%, transparent); font-family: Manrope, "DM Sans", sans-serif; font-size: 22px; font-weight: 750; letter-spacing: -.05em; }
+.ops-client-card__logo { display: grid; width: 80px; height: 80px; flex: 0 0 auto; place-items: center; overflow: hidden; color: #fff; background: var(--ops-client-accent); border: 1px solid rgb(255 255 255 / 75%); border-radius: 20px; box-shadow: 0 5px 12px color-mix(in srgb, var(--ops-client-accent) 22%, transparent); font-family: var(--ops-font-sans); font-size: 22px; font-weight: 750; letter-spacing: -.05em; }
 .ops-client-card__logo--image { background: transparent; border-color: transparent; box-shadow: none; }
 .ops-client-card__logo img { display: block; width: 100%; height: 100%; padding: 2px; object-fit: contain; }
 .ops-client-card__heading { flex: 1 1 auto; min-width: 0; }
 .ops-client-card__heading h3 { margin-top: 3px; overflow: hidden; font-size: 19px; text-overflow: ellipsis; white-space: nowrap; }
-.ops-client-card__code { display: block; margin-top: 4px; color: #929a91; font-family: "DM Mono", ui-monospace, monospace; font-size: 9px; letter-spacing: .045em; }
+.ops-client-card__code { display: block; margin-top: 4px; color: #929a91; font-family: var(--ops-font-mono); font-size: 9px; letter-spacing: .045em; }
 .ops-client-card__description { max-width: 390px; margin-top: 17px !important; color: #717b71; font-size: 12px; line-height: 1.6; }
 .ops-client-card__details { display: flex; min-height: 27px; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 13px; }
 .ops-client-card__details > span:not(.ops-pill) { display: inline-flex; align-items: center; gap: 5px; color: #7e887d; font-size: 10px; }
@@ -167,7 +197,7 @@
 .ops-package-card__box i { position: absolute; top: 20px; left: 38px; width: 38px; height: 46px; background: #b9ad99; clip-path: polygon(0 0,100% 14%,100% 100%,0 78%); }
 .ops-package-card__box b { position: absolute; top: 20px; left: 0; width: 39px; height: 45px; background: #d1c5b0; clip-path: polygon(0 0,100% 14%,100% 100%,0 78%); }
 .ops-package-card__box em { position: absolute; top: 4px; left: 35px; width: 8px; height: 29px; background: #f8f4e9; transform: rotate(50deg); }
-.ops-package-card__dimensions { position: relative; padding: 10px 12px; color: #6f687d; background: #fff; border: 1px solid #ebe7f1; border-radius: 8px; font-family: "DM Mono", ui-monospace, monospace; font-size: 11px; box-shadow: 0 3px 10px rgb(33 31 39 / 5%); }
+.ops-package-card__dimensions { position: relative; padding: 10px 12px; color: #6f687d; background: #fff; border: 1px solid #ebe7f1; border-radius: 8px; font-family: var(--ops-font-mono); font-size: 11px; box-shadow: 0 3px 10px rgb(33 31 39 / 5%); }
 .ops-package-card__dimensions small { color: #9c96a7; font-size: 9px; }
 .ops-package-card__details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .ops-package-card__details > div { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
@@ -183,7 +213,7 @@
 /* Event details */
 .ops-card--event { display: grid; grid-template-columns: 68px minmax(0,1fr); gap: 18px; padding: 22px; }
 .ops-event-card__calendar { display: flex; width: 60px; height: 66px; flex-direction: column; align-items: center; justify-content: center; margin-top: 1px; background: #f3f5ef; border: 1px solid #ebeee6; border-radius: 13px; }
-.ops-event-card__calendar span { color: #798473; font-family: "DM Mono", ui-monospace, monospace; font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+.ops-event-card__calendar span { color: #798473; font-family: var(--ops-font-mono); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
 .ops-event-card__calendar strong { margin-top: 1px; color: #334538; font-size: 24px; letter-spacing: -.06em; line-height: 1.1; }
 .ops-event-card__content { position: relative; min-width: 0; padding-right: 30px; }
 .ops-event-card__topline { display: flex; align-items: center; gap: 7px; }
@@ -223,7 +253,7 @@
 .ops-ticket-card__id { display: flex; align-items: center; gap: 9px; }
 .ops-ticket-card__id .ops-icon-tile { width: 36px; height: 36px; border-radius: 11px; }
 .ops-ticket-card__id > div:last-child { display: flex; flex-direction: column; gap: 1px; }
-.ops-ticket-card__id strong { color: #4b554b; font-family: "DM Mono", ui-monospace, monospace; font-size: 11px; font-weight: 500; }
+.ops-ticket-card__id strong { color: #4b554b; font-family: var(--ops-font-mono); font-size: 11px; font-weight: 500; }
 .ops-ticket-card > h3 { margin-top: 18px; font-size: 17px; line-height: 1.45; }
 .ops-ticket-card__meta { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 13px; color: #939a91; font-size: 10px; }
 .ops-ticket-card__meta > span:last-child { display: inline-flex; align-items: center; gap: 4px; margin-left: auto; }
@@ -239,7 +269,7 @@
 .ops-order-card__image { width: 94px; height: 100%; min-height: 112px; border-radius: 12px; }
 .ops-order-card__body { display: flex; min-width: 0; flex-direction: column; justify-content: space-between; padding: 4px 0; }
 .ops-order-card__heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-.ops-order-card__sku { color: #90988e; font-family: "DM Mono", ui-monospace, monospace; font-size: 9px; letter-spacing: .03em; }
+.ops-order-card__sku { color: #90988e; font-family: var(--ops-font-mono); font-size: 9px; letter-spacing: .03em; }
 .ops-order-card__heading h3 { margin-top: 4px; font-size: 15px; }
 .ops-order-card__variant { display: inline-block; margin-top: 4px; color: #8b9388; font-size: 10px; }
 .ops-order-card__heading .ops-pill { min-height: 20px; padding: 3px 7px; font-size: 9px; }
@@ -250,7 +280,7 @@
 .ops-order-card__details strong { color: #424a41; font-size: 11px; font-weight: 650; }
 .ops-order-card__details .ops-order-card__location { flex-direction: row; align-items: center; gap: 4px; margin-left: auto; color: #8b9388; }
 .ops-order-card__total { display: flex; min-width: 96px; flex-direction: column; align-items: flex-end; justify-content: space-between; padding: 5px 1px 4px 10px; border-left: 1px solid #eff0ec; }
-.ops-order-card__total > small { color: #969e94; font-family: "DM Mono", ui-monospace, monospace; font-size: 8px; letter-spacing: .06em; }
+.ops-order-card__total > small { color: #969e94; font-family: var(--ops-font-mono); font-size: 8px; letter-spacing: .06em; }
 .ops-order-card__total > strong { margin: auto 0; color: #2c372d; font-size: 16px; letter-spacing: -.04em; white-space: nowrap; }
 .ops-order-card__total > span { display: grid; width: 27px; height: 27px; place-items: center; color: #6f796d; background: #f4f5f1; border: 1px solid #eceee8; border-radius: 50%; }
 

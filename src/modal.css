@@ -205,6 +205,34 @@
 .ops-modal__footer button:not(.MuiButton-root):hover { background: #f1f5f9; }
 .ops-modal__surface :focus-visible { outline-color: #0891b2; }
 
+.ops-modal-button {
+  display: inline-flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  color: #475569;
+  font: 600 14px/1.25 var(--ops-font-sans);
+  cursor: pointer;
+  transition: background-color 140ms ease, border-color 140ms ease, color 140ms ease;
+}
+.ops-modal-button:hover { background: #f1f5f9; }
+.ops-modal-button:disabled { cursor: not-allowed; opacity: .55; }
+.ops-modal-button--primary { border-color: transparent; background: #06b6d4; color: #083344; }
+.ops-modal-button--primary:hover { background: #22d3ee; }
+.ops-modal-button--danger { border-color: #e11d48; background: #e11d48; color: #fff; }
+.ops-modal-button--danger:hover { border-color: #be123c; background: #be123c; }
+.ops-modal-button__icon { display: inline-flex; align-items: center; }
+.ops-modal__footer button.ops-modal-button { padding: 8px 16px; border-radius: 8px; font-size: 14px; font-weight: 600; }
+.ops-modal__footer button.ops-modal-button--primary { border-color: transparent; background: #06b6d4; color: #083344; }
+.ops-modal__footer button.ops-modal-button--primary:hover { background: #22d3ee; }
+.ops-modal__footer button.ops-modal-button--danger { border-color: #e11d48; background: #e11d48; color: #fff; }
+.ops-modal__footer button.ops-modal-button--danger:hover { border-color: #be123c; background: #be123c; }
+
 .modal-card {
   box-sizing: border-box;
   padding: 1rem;
@@ -281,7 +309,7 @@
   background: #ecfeff;
   border: 1px solid #cffafe;
   border-radius: 6px;
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-family: var(--ops-font-mono);
   font-size: 11px;
   font-weight: 600;
   line-height: 1.4;

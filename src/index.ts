@@ -8,6 +8,10 @@ export {
   OpsModalContentText,
   OpsModalHeader,
 } from "./components/OpsModal";
+export { OpsModalButton } from "./components/OpsModalButton";
+export type { OpsModalButtonAppearance, OpsModalButtonProps } from "./components/OpsModalButton";
+export { OpsModalDialog } from "./components/OpsModalDialog";
+export type { OpsModalDialogClassNames, OpsModalDialogProps } from "./components/OpsModalDialog";
 export type {
   OpsModalCloseReason,
   OpsModalMaxWidth,
