@@ -42,6 +42,8 @@ export { ReferenceDataCard } from "./components/ReferenceDataCard";
 export type { ReferenceDataCardProps } from "./components/ReferenceDataCard";
 export { OrderLineItemCard } from "./components/OrderLineItemCard";
 export type { OrderLineItemCardProps } from "./components/OrderLineItemCard";
+export { AddressCards } from "./components/AddressCards";
+export type { AddressCardData, AddressCardsProps } from "./components/AddressCards";
 export { formatOpsCurrency, formatOpsDateTime, formatOpsNumber, formatOpsPhone } from "./utils/formatters";
 export type {
   EventAttendee,
