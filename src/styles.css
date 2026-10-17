@@ -194,6 +194,66 @@ pre,
 .ops-address-card__contact a:hover { color: #083344; text-decoration: underline; text-underline-offset: 2px; }
 .ops-address-card__contact a span { color: #64748b; font-size: 10px; font-weight: 600; text-transform: uppercase; }
 .ops-address-card__contact a strong { overflow-wrap: anywhere; font-weight: 600; }
+.ops-address-card__contact a strong { display: inline-flex; align-items: center; gap: 6px; }
+.ops-address-card__contact a .ops-address-card__country-flag { color: inherit; font-size: 13px; line-height: 1; }
+
+/* User profile detail view */
+.ops-user-profile-card {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  color: #0f172a;
+  background: #fff;
+  border: 1px solid #dbe7e9;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px rgb(15 45 55 / 5%);
+  font-family: var(--polyform-font-sans, var(--ops-font-sans, ui-sans-serif, system-ui, sans-serif));
+}
+.ops-user-profile-card *,
+.ops-user-profile-card *::before,
+.ops-user-profile-card *::after { box-sizing: border-box; }
+.ops-user-profile-card h2,
+.ops-user-profile-card h3,
+.ops-user-profile-card p,
+.ops-user-profile-card dl,
+.ops-user-profile-card dt,
+.ops-user-profile-card dd { margin: 0; }
+.ops-user-profile-card__header { display: flex; min-width: 0; align-items: center; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid #e2e8f0; }
+.ops-user-profile-card__avatar { display: grid; width: 52px; height: 52px; flex: 0 0 auto; overflow: hidden; place-items: center; color: #0e7490; background: #cffafe; border: 1px solid #a5f3fc; border-radius: 16px; font-size: 16px; font-weight: 700; }
+.ops-user-profile-card__avatar img { width: 100%; height: 100%; object-fit: cover; }
+.ops-user-profile-card__heading { min-width: 0; flex: 1 1 auto; }
+.ops-user-profile-card__heading h2 { color: #0e7490; font-size: 1rem; font-weight: 700; letter-spacing: -.015em; line-height: 1.3; }
+.ops-user-profile-card__heading p { margin-top: 2px; color: #527481; font-size: .8125rem; font-weight: 450; letter-spacing: .005em; line-height: 1.5; }
+.ops-user-profile-card__name { flex: 0 1 auto; max-width: 40%; overflow-wrap: anywhere; color: #334155; font-size: 14px; font-weight: 650; text-align: right; }
+.ops-user-profile-card__facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); gap: 10px; padding: 18px 0; }
+.ops-user-profile-card__fact { display: flex; min-width: 0; min-height: 66px; align-items: flex-start; gap: 11px; padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 11px; }
+.ops-user-profile-card__fact-icon { display: grid; width: 30px; height: 30px; flex: 0 0 auto; place-items: center; color: #0e7490; background: #ecfeff; border: 1px solid #cffafe; border-radius: 9px; }
+.ops-user-profile-card__fact-copy { min-width: 0; }
+.ops-user-profile-card__fact-copy dt { color: #64748b; font-size: 11px; font-weight: 650; letter-spacing: .055em; line-height: 1.35; text-transform: uppercase; }
+.ops-user-profile-card__fact-copy dd { display: flex; min-width: 0; align-items: center; gap: 7px; margin-top: 4px; color: #0f172a; font-size: 14px; font-weight: 600; line-height: 1.4; overflow-wrap: anywhere; }
+.ops-user-profile-card__link { display: inline-flex; min-width: 0; align-items: center; gap: 7px; color: #0284c7; font-size: 14px; font-weight: 600; text-decoration: none; text-underline-offset: 3px; }
+.ops-user-profile-card__link:hover { color: #0369a1; text-decoration: underline; }
+.ops-user-profile-card__phone-number { font-family: var(--ops-font-mono); font-variant-numeric: tabular-nums; }
+.ops-user-profile-card__phone-flag { flex: 0 0 auto; font-family: var(--ops-font-sans); font-size: 16px; line-height: 1; }
+.ops-user-profile-card__role { display: inline-flex; min-height: 27px; align-items: center; gap: 6px; padding: 4px 9px; border: 1px solid transparent; border-radius: 7px; font-size: 11px; font-weight: 700; letter-spacing: .055em; line-height: 1; text-transform: uppercase; white-space: nowrap; }
+.ops-user-profile-card__role--purple { color: #6d28d9; background: #f5f3ff; border-color: #ddd6fe; }
+.ops-user-profile-card__role--cyan { color: #0e7490; background: #ecfeff; border-color: #a5f3fc; }
+.ops-user-profile-card__role--amber { color: #b45309; background: #fffbeb; border-color: #fde68a; }
+.ops-user-profile-card__role--slate { color: #475569; background: #f1f5f9; border-color: #e2e8f0; }
+.ops-user-profile-card__addresses { padding-top: 17px; border-top: 1px solid #e2e8f0; }
+.ops-user-profile-card__addresses-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+.ops-user-profile-card__addresses-title { display: flex; align-items: center; gap: 9px; }
+.ops-user-profile-card__addresses-icon { display: grid; width: 30px; height: 30px; place-items: center; color: #0e7490; background: #ecfeff; border: 1px solid #cffafe; border-radius: 9px; }
+.ops-user-profile-card__addresses-title h3 { color: #0f172a; font-size: 14px; font-weight: 700; }
+.ops-user-profile-card__address-count { padding: 5px 9px; color: #0e7490; background: #ecfeff; border: 1px solid #a5f3fc; border-radius: 999px; font-size: 11px; font-weight: 650; white-space: nowrap; }
+
+@media (max-width: 640px) {
+  .ops-user-profile-card { padding: 12px; }
+  .ops-user-profile-card__header { align-items: flex-start; flex-wrap: wrap; }
+  .ops-user-profile-card__heading { min-width: calc(100% - 70px); }
+  .ops-user-profile-card__name { max-width: 100%; flex-basis: 100%; text-align: left; }
+  .ops-user-profile-card__facts { grid-template-columns: 1fr; }
+}
 
 .ops-product-image { display: grid; overflow: hidden; place-items: center; background: #eef1e9; }
 .ops-product-image img { display: block; width: 100%; height: 100%; object-fit: cover; }

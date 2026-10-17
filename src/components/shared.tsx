@@ -71,11 +71,14 @@ export type IconName =
   | "clock"
   | "cube"
   | "headset"
+  | "mail"
   | "map-pin"
   | "package"
   | "palette"
+  | "phone"
   | "ruler"
   | "shirt"
+  | "shield-check"
   | "spark"
   | "tag"
   | "trend"
@@ -99,10 +102,13 @@ export function Icon({
     clock: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
     cube: <><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" /><path d="m4.5 7.5 7.5 4 7.5-4M12 12v9" /></>,
     headset: <><path d="M4 13v-1a8 8 0 0 1 16 0v1" /><path d="M4 13h3v6H6a2 2 0 0 1-2-2v-4ZM20 13h-3v6h1a2 2 0 0 0 2-2v-4Z" /></>,
+    mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></>,
     "map-pin": <><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z" /><circle cx="12" cy="10" r="2.5" /></>,
     package: <><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" /><path d="m4.5 7.5 7.5 4 7.5-4M12 12v9" /><path d="m8 5.2 8 4.4" /></>,
     palette: <><path d="M12 3a9 9 0 1 0 0 18h1.1a2 2 0 0 0 1.6-3.2 1.7 1.7 0 0 1 1.4-2.8H18a3 3 0 0 0 3-3c0-5-4-9-9-9Z" /><circle cx="7.5" cy="11" r="1" /><circle cx="10" cy="7.5" r="1" /><circle cx="15" cy="8" r="1" /></>,
+    phone: <path d="M7.2 3.5h2.6l1.3 4.1-1.8 1.8a14 14 0 0 0 5.3 5.3l1.8-1.8 4.1 1.3v2.6a2 2 0 0 1-2.2 2A16.8 16.8 0 0 1 5.2 5.7a2 2 0 0 1 2-2.2Z" />,
     ruler: <><path d="M4 4h16v16H4z" /><path d="M8 4v4m4-4v2m4-2v4m4-4v2M4 12h4m-4 4h2m-2 4h4" /></>,
+    "shield-check": <><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z" /><path d="m9 12 2 2 4-4" /></>,
     shirt: <><path d="m8 4 4 2 4-2 5 3-3 5-2-1v9H8v-9l-2 1-3-5 5-3Z" /><path d="M10 5.2a2 2 0 0 0 4 0" /></>,
     spark: <><path d="m12 3 1.9 5.8L20 11l-6.1 2.2L12 19l-2-5.8L4 11l6-2.2L12 3Z" /><path d="m19 14 .9 2.1L22 17l-2.1.9L19 20l-.9-2.1L16 17l2.1-.9L19 14Z" /></>,
     tag: <><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0l-7.2-7.2a2 2 0 0 1 0-2.8L10.6 3.4H20v9.4Z" /><circle cx="15.5" cy="8.5" r="1" /></>,

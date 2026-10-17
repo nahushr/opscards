@@ -1,4 +1,5 @@
 import {
+  formatIncompletePhoneNumber,
   parsePhoneNumberFromString,
   type CountryCode,
 } from "libphonenumber-js";
@@ -199,6 +200,66 @@ export function formatOpsPhone(phone: string, countryCode?: string): string {
     return parsed?.formatInternational() ?? value;
   } catch {
     return value;
+  }
+}
+
+const COUNTRY_BY_CALLING_CODE: Record<string, CountryCode> = {
+  "1": "US",
+  "27": "ZA",
+  "33": "FR",
+  "44": "GB",
+  "49": "DE",
+  "52": "MX",
+  "55": "BR",
+  "61": "AU",
+  "64": "NZ",
+  "65": "SG",
+  "81": "JP",
+  "86": "CN",
+  "91": "IN",
+  "971": "AE",
+};
+
+export interface OpsPhoneDisplay {
+  /** National-format phone string, such as `(415) 555-2671`. */
+  display: string;
+  /** ISO 3166-1 alpha-2 code when the phone number identifies a country. */
+  countryCode?: CountryCode;
+  /** Unicode flag for the identified country. */
+  flag?: string;
+}
+
+const getFlagEmoji = (countryCode?: CountryCode): string | undefined => {
+  if (!countryCode) return undefined;
+  return [...countryCode.toUpperCase()]
+    .map((letter) => String.fromCodePoint((letter.codePointAt(0) ?? 0) + 127397))
+    .join("");
+};
+
+/** Formats a phone for a profile/contact card and exposes its country flag. */
+export function formatOpsPhoneDisplay(phone: string): OpsPhoneDisplay {
+  const value = phone.trim();
+  if (!value) return { display: "" };
+
+  try {
+    const parsed = parsePhoneNumberFromString(value);
+    const callingCode = parsed?.countryCallingCode ?? /^\+\s*(\d{1,3})/u.exec(value)?.[1];
+    const countryCode =
+      parsed?.country ?? (callingCode ? COUNTRY_BY_CALLING_CODE[callingCode] : undefined);
+    const nationalNumber = parsed?.nationalNumber;
+    const display = parsed?.isValid()
+      ? parsed.formatNational()
+      : countryCode && nationalNumber
+        ? formatIncompletePhoneNumber(nationalNumber, countryCode) || value
+        : value;
+
+    return {
+      display,
+      countryCode,
+      flag: getFlagEmoji(countryCode),
+    };
+  } catch {
+    return { display: value };
   }
 }
 

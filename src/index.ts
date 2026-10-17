@@ -44,7 +44,10 @@ export { OrderLineItemCard } from "./components/OrderLineItemCard";
 export type { OrderLineItemCardProps } from "./components/OrderLineItemCard";
 export { AddressCards } from "./components/AddressCards";
 export type { AddressCardData, AddressCardsProps } from "./components/AddressCards";
-export { formatOpsCurrency, formatOpsDateTime, formatOpsNumber, formatOpsPhone } from "./utils/formatters";
+export { UserProfileCard } from "./components/UserProfileCard";
+export type { UserProfileCardProps } from "./components/UserProfileCard";
+export { formatOpsCurrency, formatOpsDateTime, formatOpsNumber, formatOpsPhone, formatOpsPhoneDisplay } from "./utils/formatters";
+export type { OpsPhoneDisplay } from "./utils/formatters";
 export type {
   EventAttendee,
   EventDetailsCardData,

@@ -1,5 +1,6 @@
 import type { HTMLAttributes } from "react";
 import { Icon } from "./shared";
+import { formatOpsPhoneDisplay } from "../utils/formatters";
 
 export interface AddressCardData {
   id?: number | string;
@@ -48,6 +49,9 @@ export function AddressCards({
         const locality = text(address.city, address.state, address.postalCode).join(", ");
         const key = address.id ?? `${address.type ?? "address"}-${index}`;
         const addressType = address.type?.trim() || `Address ${index + 1}`;
+        const phone = address.phone?.trim()
+          ? formatOpsPhoneDisplay(address.phone)
+          : undefined;
 
         return (
           <article className="ops-address-card" key={key}>
@@ -86,10 +90,21 @@ export function AddressCards({
 
             {(address.email?.trim() || address.phone?.trim()) && (
               <footer className="ops-address-card__contact">
-                {address.phone?.trim() && (
+                {phone && (
                   <a href={`tel:${address.phone}`}>
                     <span>Phone</span>
-                    <strong>{address.phone}</strong>
+                    <strong>
+                      {phone.flag && (
+                        <span
+                          className="ops-address-card__country-flag"
+                          role="img"
+                          aria-label={`${phone.countryCode} flag`}
+                        >
+                          {phone.flag}
+                        </span>
+                      )}
+                      {phone.display}
+                    </strong>
                   </a>
                 )}
                 {address.email?.trim() && (
