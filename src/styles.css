@@ -241,11 +241,6 @@ pre,
 .ops-user-profile-card__role--amber { color: #b45309; background: #fffbeb; border-color: #fde68a; }
 .ops-user-profile-card__role--slate { color: #475569; background: #f1f5f9; border-color: #e2e8f0; }
 .ops-user-profile-card__addresses { padding-top: 17px; border-top: 1px solid #e2e8f0; }
-.ops-user-profile-card__addresses-header { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
-.ops-user-profile-card__addresses-title { display: flex; align-items: center; gap: 9px; }
-.ops-user-profile-card__addresses-icon { display: grid; width: 30px; height: 30px; place-items: center; color: #0e7490; background: #ecfeff; border: 1px solid #cffafe; border-radius: 9px; }
-.ops-user-profile-card__addresses-title h3 { color: #0f172a; font-size: 14px; font-weight: 700; }
-.ops-user-profile-card__address-count { padding: 5px 9px; color: #0e7490; background: #ecfeff; border: 1px solid #a5f3fc; border-radius: 999px; font-size: 11px; font-weight: 650; white-space: nowrap; }
 
 @media (max-width: 640px) {
   .ops-user-profile-card { padding: 12px; }

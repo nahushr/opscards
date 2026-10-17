@@ -148,17 +148,6 @@ export function UserProfileCard({
       </dl>
 
       <section className="ops-user-profile-card__addresses" aria-label="User addresses">
-        <header className="ops-user-profile-card__addresses-header">
-          <div className="ops-user-profile-card__addresses-title">
-            <span className="ops-user-profile-card__addresses-icon" aria-hidden="true">
-              <Icon name="map-pin" size={17} />
-            </span>
-            <h3>Addresses</h3>
-          </div>
-          <span className="ops-user-profile-card__address-count">
-            {addresses.length} {addresses.length === 1 ? "address" : "addresses"}
-          </span>
-        </header>
         <AddressCards addresses={addresses} emptyText="No addresses on file." />
       </section>
     </article>
