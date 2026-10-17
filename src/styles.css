@@ -413,3 +413,58 @@ pre,
   .ops-order-card__details small { font-size: 10px; }
   .ops-order-card__details strong { font-size: 12px; }
 }
+
+/* Read-only reference-data section cards used by spreadsheet import flows. */
+.ops-reference-data-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  color: #0f172a;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  box-shadow: 0 1px 3px rgb(15 23 42 / 0.06);
+  font-family: var(--ops-font-sans, Inter, ui-sans-serif, system-ui, sans-serif);
+}
+.ops-reference-data-card__heading {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 12px;
+}
+.ops-reference-data-card__ordinal {
+  display: inline-flex;
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: #0e7490;
+  background: #ecfeff;
+  border: 1px solid #a5f3fc;
+  border-radius: 11px;
+  font-family: var(--ops-font-mono, "JetBrains Mono", ui-monospace, monospace);
+  font-size: 12px;
+  font-weight: 700;
+}
+.ops-reference-data-card__copy { min-width: 0; }
+.ops-reference-data-card__title {
+  margin: 0;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.ops-reference-data-card__description {
+  margin: 4px 0 0;
+  color: #475569;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.ops-reference-data-card__content { width: 100%; min-width: 0; }
+
+@media (max-width: 600px) {
+  .ops-reference-data-card { padding: 14px; }
+}
