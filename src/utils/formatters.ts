@@ -221,7 +221,7 @@ const COUNTRY_BY_CALLING_CODE: Record<string, CountryCode> = {
 };
 
 export interface OpsPhoneDisplay {
-  /** National-format phone string, such as `(415) 555-2671`. */
+  /** Internationally prefixed phone string, such as `+1 (415) 555-2671`. */
   display: string;
   /** ISO 3166-1 alpha-2 code when the phone number identifies a country. */
   countryCode?: CountryCode;
@@ -248,10 +248,12 @@ export function formatOpsPhoneDisplay(phone: string): OpsPhoneDisplay {
       parsed?.country ?? (callingCode ? COUNTRY_BY_CALLING_CODE[callingCode] : undefined);
     const nationalNumber = parsed?.nationalNumber;
     const display = parsed?.isValid()
-      ? parsed.formatNational()
-      : countryCode && nationalNumber
-        ? formatIncompletePhoneNumber(nationalNumber, countryCode) || value
-        : value;
+      ? countryCode === "US" || countryCode === "CA"
+        ? `+${callingCode} ${parsed.formatNational()}`
+        : parsed.formatInternational()
+      : countryCode && nationalNumber && callingCode
+        ? `+${callingCode} ${formatIncompletePhoneNumber(nationalNumber, countryCode) || nationalNumber}`
+        : parsed?.formatInternational() ?? value;
 
     return {
       display,
