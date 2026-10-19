@@ -77,12 +77,18 @@ export interface InventoryLocationCardData extends RegionFormat {
   city?: string;
   country?: string;
   onHand: number;
-  reorderPoint: number;
+  reorderPoint?: number | null;
+  maxStockLevel?: number | null;
   unitLabel?: string;
   restockDate?: string;
+  contactName?: string;
+  contactPhone?: string;
+  contactPhoneHref?: string;
+  contactCountryCode?: string;
+  contactEmail?: string;
   inventoryValue?: number;
   currency?: string;
-  status?: string;
+  status?: string | null;
 }
 
 export interface PackageCardData extends RegionFormat {

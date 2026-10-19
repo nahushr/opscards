@@ -349,6 +349,10 @@ pre,
 .ops-inventory-card__meta span { display: inline-flex; align-items: center; gap: 4px; }
 .ops-inventory-card__meta span svg { flex: 0 0 auto; color: #78937b; }
 .ops-inventory-card__meta strong { color: #535e53; font-weight: 600; }
+.ops-inventory-card__contact { display: flex; flex-wrap: wrap; align-items: center; gap: 9px 16px; margin-top: 13px; padding-top: 12px; border-top: 1px solid #edf0ea; }
+.ops-inventory-card__contact-item { display: inline-flex; min-width: 0; align-items: center; gap: 7px; color: #52615a; font-size: 12px; line-height: 1.4; text-decoration: none; }
+.ops-inventory-card__contact-item svg { flex: 0 0 auto; color: #0e7490; }
+a.ops-inventory-card__contact-item:hover { color: #0e7490; text-decoration: underline; text-underline-offset: 3px; }
 
 /* Packaging specifications */
 .ops-card--package { padding: 22px; }
