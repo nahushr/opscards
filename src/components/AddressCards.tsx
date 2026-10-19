@@ -5,6 +5,7 @@ import { formatOpsPhoneDisplay } from "../utils/formatters";
 export interface AddressCardData {
   id?: number | string;
   type?: string;
+  nickname?: string;
   primary?: boolean;
   recipient?: string;
   streetAddress?: string;

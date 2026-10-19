@@ -1,5 +1,6 @@
 import "./styles.css";
 import "./modal.css";
+import "./address-popover.css";
 
 export {
   OpsModal,
@@ -44,6 +45,8 @@ export { OrderLineItemCard } from "./components/OrderLineItemCard";
 export type { OrderLineItemCardProps } from "./components/OrderLineItemCard";
 export { AddressCards } from "./components/AddressCards";
 export type { AddressCardData, AddressCardsProps } from "./components/AddressCards";
+export { AddressPopoverCard } from "./components/AddressPopoverCard";
+export type { AddressPopoverCardProps } from "./components/AddressPopoverCard";
 export { UserProfileCard } from "./components/UserProfileCard";
 export type { UserProfileCardProps } from "./components/UserProfileCard";
 export { formatOpsCurrency, formatOpsDateTime, formatOpsNumber, formatOpsPhone, formatOpsPhoneDisplay } from "./utils/formatters";
