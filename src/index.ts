@@ -1,6 +1,7 @@
 import "./styles.css";
 import "./modal.css";
 import "./address-popover.css";
+import "./grid-card-typography.css";
 
 export {
   OpsModal,

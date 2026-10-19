@@ -1,0 +1,51 @@
+/* Readable type scale for cards shown inside operational data grids. */
+.ops-reference-data-card .ops-reference-data-card__title { font-size: 20px; }
+.ops-reference-data-card .ops-reference-data-card__description { font-size: 16px; }
+
+.ops-permission-category-card .ops-permission-category-card__title { font-size: 16px; }
+.ops-permission-card .ops-permission-card__code { font-size: 14px; }
+.ops-permission-card .ops-permission-card__name { font-size: 18px; }
+.ops-permission-card .ops-permission-card__description { font-size: 16px; line-height: 1.55; }
+
+.ops-user-group-card .ops-user-group-card__name { font-size: 18px; line-height: 1.4; }
+.ops-user-group-card .ops-user-group-card__description { font-size: 16px; line-height: 1.55; }
+.ops-user-group-card .ops-user-group-card__metadata,
+.ops-user-group-card .ops-user-group-card__metadata > span { font-size: 15px; }
+
+.ops-address-card .ops-address-card__type { font-size: 14px; }
+.ops-address-card .ops-address-card__recipient { font-size: 18px; }
+.ops-address-card .ops-address-card__primary { font-size: 14px; }
+.ops-address-card .ops-address-card__street,
+.ops-address-card .ops-address-card__locality,
+.ops-address-card .ops-address-card__country { font-size: 16px; }
+.ops-address-card .ops-address-card__contact a { font-size: 16px; }
+.ops-address-card .ops-address-card__contact a span { font-size: 13px; }
+.ops-address-card .ops-address-card__contact a .ops-address-card__country-flag { font-size: 16px; }
+
+.ops-address-popover-card .ops-address-popover-card__heading strong { font-size: 20px; }
+.ops-address-popover-card .ops-address-popover-card__type,
+.ops-address-popover-card .ops-address-popover-card__primary { font-size: 14px; }
+.ops-address-popover-card .ops-address-popover-card__lines { font-size: 16px; }
+.ops-address-popover-card .ops-address-popover-card__contact { font-size: 16px; }
+.ops-address-popover-card .ops-address-popover-card__contact > strong { font-size: 16px; }
+
+.ops-user-profile-card .ops-user-profile-card__fact-copy dt { font-size: 14px; }
+.ops-user-profile-card .ops-user-profile-card__fact-copy dd,
+.ops-user-profile-card .ops-user-profile-card__link,
+.ops-user-profile-card .ops-user-profile-card__name { font-size: 16px; }
+.ops-user-profile-card .ops-user-profile-card__role { font-size: 14px; }
+
+.ops-inventory-card .ops-inventory-card__address,
+.ops-inventory-card .ops-inventory-card__number span,
+.ops-inventory-card .ops-inventory-card__meta { font-size: 14px; }
+.ops-inventory-card .ops-inventory-card__value { font-size: 17px; }
+.ops-inventory-card .ops-inventory-card__value small { font-size: 14px; }
+.ops-inventory-card .ops-inventory-card__contact-item { font-size: 16px; }
+
+.ops-package-card .ops-package-card__price small,
+.ops-package-card .ops-package-card__dimensions small,
+.ops-package-card .ops-package-card__details small { font-size: 14px; }
+.ops-package-card .ops-package-card__dimensions { font-size: 15px; }
+.ops-package-card .ops-package-card__details span { font-size: 15px; }
+.ops-package-card .ops-package-card__details strong { font-size: 17px; }
+.ops-package-card .ops-package-card__foot { font-size: 14px; }
